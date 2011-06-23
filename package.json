@@ -1,6 +1,6 @@
 {
     "name": "assetgraph-sprite",
-    "description": "Optimization framework for web pages and applications",
+    "description": "AssetGraph plugin for creating sprites from background images",
     "repository": "git://github.com/One-com/assetgraph-sprite.git",
     "version": "0.0.3-pre",
     "maintainers": [
