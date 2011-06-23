@@ -6,6 +6,8 @@ A plugin (or "transform") for `AssetGraph
 images by creating sprite images. The spriting is guided by a set of
 custom CSS properties with a ``-one-sprite`` prefix.
 
+(More docs will follow!)
+
 Installation
 ------------
 
