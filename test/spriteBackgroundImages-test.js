@@ -25,7 +25,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(transforms.spriteBackgroundImages()).run(this.callback);
+                assetGraph.queue(require('../lib')()).run(this.callback);
             },
             'the number of Png assets should be down to one': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
