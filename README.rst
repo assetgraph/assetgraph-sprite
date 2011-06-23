@@ -2,7 +2,7 @@ AssetGraph-sprite
 =================
 
 A plugin (or "transform") for `AssetGraph
-<http://github.com/One-com/assetgraph`_ that optimizes CSS background
+<http://github.com/One-com/assetgraph>`_ that optimizes CSS background
 images by creating sprite images. The spriting is guided by a set of
 custom CSS properties with a ``-one-sprite`` prefix.
 
@@ -24,4 +24,3 @@ License
 
 AssetGraph-sprite is licensed under a standard 3-clause BSD license -- see the
 ``LICENSE``-file for details.
-
