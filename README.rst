@@ -21,8 +21,15 @@ When Cairo is in place, you can proceed to install AssetGraph-sprite::
 
     $ npm install assetgraph-sprite
 
+Since ``node-canvas`` currently doesn't support GIF files (`issue here
+<https://github.com/LearnBoost/node-canvas/issues/78>`_),
+AssetGraph-sprite will try to spawn a `GraphicsMagick
+<http://graphicsmagick.org/>`_ process to convert GIFs to PNGs before
+adding them to a sprite. So if you want to sprite GIFs, GraphicsMagick
+must be installed and the ``gm`` command must be in your $PATH.
+
 License
 -------
 
-AssetGraph-sprite is licensed under a standard 3-clause BSD license -- see the
-``LICENSE``-file for details.
+AssetGraph-sprite is licensed under a standard 3-clause BSD license --
+see the ``LICENSE``-file for details.
