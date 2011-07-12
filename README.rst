@@ -11,22 +11,18 @@ custom CSS properties with a ``-one-sprite`` prefix.
 Installation
 ------------
 
-AssetGraph-sprite uses `node-canvas
-<http://github.com/LearnBoost/node-canvas>`_ for creating the sprite
-images themselves, which is not a pure-node module and requires the
-Cairo development sources version 1.10 or later (`libcairo2-dev` on
-Ubuntu & friends) and compilation of some glue C++-code to work.
+For creating the sprite images themselves AssetGraph-sprite uses
+`node-canvas <http://github.com/LearnBoost/node-canvas>`_, which is
+not a pure-node module and requires the Cairo development sources
+(version 1.10 or later), `libjpeg` (version 8 or later) and
+`libgif`. On Ubuntu 10.10 and above you should be able to get them
+like this::
 
-When Cairo is in place, you can proceed to install AssetGraph-sprite::
+    $ sudo apt-get install libcairo2-dev libgif-dev libjpeg8-dev
+
+Now you can proceed to install AssetGraph-sprite::
 
     $ npm install assetgraph-sprite
-
-Since ``node-canvas`` currently doesn't support GIF files (`issue here
-<https://github.com/LearnBoost/node-canvas/issues/78>`_),
-AssetGraph-sprite will try to spawn a `GraphicsMagick
-<http://graphicsmagick.org/>`_ process to convert GIFs to PNGs before
-adding them to a sprite. So if you want to sprite GIFs, GraphicsMagick
-must be installed and the ``gm`` command must be in your $PATH.
 
 License
 -------
