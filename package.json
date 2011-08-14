@@ -9,6 +9,9 @@
             "email": "andreas@one.com"
         }
     ],
+    "publicationConfig": {
+        "registry": "http://registry.npmjs.org/"
+    },
     "dependencies": {
         "underscore": ">= 1.1.3",
         "bufferjs": "= 1.0.1",
