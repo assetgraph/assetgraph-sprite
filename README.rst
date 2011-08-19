@@ -138,7 +138,7 @@ all the images to a different directory::
     var AssetGraph = require('assetgraph'),
         transfors = AssetGraph.transforms;
 
-    new AssetGraph("path/to/css/files").queue(
+    new AssetGraph({root: "path/to/css/files"}).queue(
         transforms.loadAssets('*.css'),
         transforms.populate({followRelations: {type: 'CssImage'}}),
         require('assetgraph-sprite')(),
