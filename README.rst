@@ -8,15 +8,17 @@ custom CSS properties with a ``-one-sprite`` prefix.
 
 You can tell AssetGraph-sprite that you want to sprite a given CSS
 background image by adding a ``-one-sprite-group`` property to the
-selector containing the containing a ``background`` or
-``background-image`` property::
+selector containing the ``background`` or ``background-image``
+property::
 
     .classone {background-image: url(images/thething.png);      -one-sprite-group: my-sprite-group; }
     .classtwo {background-image: url(images/theotherthing.png); -one-sprite-group: my-sprite-group; }
 
-This is valid CSS and will work fine in "development mode" without a
-compilation step. After being run through the AssetGraph-sprite
-transform it will look something like this::
+This is valid CSS and will also work fine on its own in "development
+mode" without a compilation step, so you don't need to rebuild your
+project all the time, except when you want to test the spriting
+itself. After being run through the AssetGraph-sprite transform it
+will look something like this::
 
     .classone { background-image: url(7bda8ba87d.png); background-position: 0 0; }
     .classtwo { background-image: url(7bda8ba87d.png); background-position: -34px 0; }
