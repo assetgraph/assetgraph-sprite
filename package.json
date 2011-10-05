@@ -9,7 +9,7 @@
             "email": "andreas@one.com"
         }
     ],
-    "publicationConfig": {
+    "publishConfig": {
         "registry": "http://registry.npmjs.org/"
     },
     "dependencies": {
