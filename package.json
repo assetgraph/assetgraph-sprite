@@ -13,9 +13,9 @@
         "registry": "http://registry.npmjs.org/"
     },
     "dependencies": {
-        "underscore": "= 1.2.0",
+        "underscore": "= 1.2.2",
         "bufferjs": "= 1.0.2",
-        "canvas": "= 0.7.3",
+        "canvas": "= 0.8.1",
         "seq": "= 0.3.5"
     },
     "devDependencies": {
