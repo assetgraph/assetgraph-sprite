@@ -15,7 +15,7 @@
     "dependencies": {
         "underscore": "= 1.2.2",
         "bufferjs": "= 1.0.2",
-        "canvas": "= 0.8.1",
+        "canvas": "= 0.10.0",
         "seq": "= 0.3.5"
     },
     "devDependencies": {
