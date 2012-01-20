@@ -28,5 +28,8 @@
     "directories": {
         "lib": "./lib"
     },
+    "scripts": {
+        "prepublish": "npm install && vows"
+    },
     "main": "lib/index.js"
 }
