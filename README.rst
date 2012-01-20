@@ -75,7 +75,7 @@ selector", for example::
 
 These options are currently supported:
 
-``-one-sprite-packer: horizontal|vertical|jim-scott``
+``-one-sprite-packer: horizontal|vertical|jim-scott|try-all``
   Selects the packing algorithm for the sprite. The ``horizontal`` and
   ``vertical`` variants naively lay out the images one after the other.
   This works well when you have a bunch of images with the same height
@@ -84,9 +84,9 @@ These options are currently supported:
   <http://www.blackpawn.com/texts/lightmaps/>`_ originally invented
   by Jim Scott for packing lightmaps. The Jim Scott packer doesn't
   support the ``-one-sprite-padding`` property on the individual images.
-  If you don't specify ``-one-sprite-packer``, the default is to try all
-  the algorithms and choose the packing that produces the smallest sprite
-  image (area-wise).
+  If you don't specify ``-one-sprite-packer``, the default is ``try-all``,
+  which runs all the algorithms and chooses the packing that produces
+  the smallest sprite image (area-wise).
 
 ``-one-sprite-important: important``
   Adds ``!important`` after the injected ``background-image``. As mentioned
@@ -94,8 +94,8 @@ These options are currently supported:
   ``one-sprite-important: important`` to the selector containing
   the ``background`` or ``background-image`` selector).
 
-``-one-sprite-image-format: png|...``
-  Only supported value is currently ``png``. More will be added when
+``-one-sprite-image-format: png|jpg``
+  The format of the generated sprite. More will be added when
   `node-canvas <http://github.com/LearnBoost/node-canvas>`_ gains
   support for more image formats.
 

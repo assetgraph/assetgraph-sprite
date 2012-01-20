@@ -31,5 +31,27 @@ vows.describe('Sprite background images').addBatch({
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
             }
         }
+    },
+    'After loading the same test case again, set the -one-sprite-image-format to jpg and sprite the background images': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages'}).queue(
+                transforms.loadAssets('style.css'),
+                transforms.populate(),
+                function (assetGraph) {
+                    var cssAsset = assetGraph.findAssets({type: 'Css'})[0];
+                    cssAsset.parseTree.cssRules[0].style.setProperty('-one-sprite-image-format', 'jpg');
+                    cssAsset.markDirty();
+                },
+                require('../lib')()
+            ).run(this.callback);
+        },
+        'there should be no Png assets left in the graph': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 0);
+        },
+        'the graph should contain an Jpeg asset': function (assetGraph) {
+            var jpegAssets = assetGraph.findAssets({type: 'Jpeg'});
+            assert.equal(jpegAssets.length, 1);
+            assert.equal(jpegAssets[0].rawSrc.slice(6, 10).toString('ascii'), 'JFIF');
+        }
     }
 })['export'](module);
