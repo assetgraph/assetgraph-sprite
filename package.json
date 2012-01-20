@@ -19,7 +19,7 @@
         "seq": "= 0.3.5"
     },
     "devDependencies": {
-        "assetgraph": "~ 0.2.0",
+        "assetgraph": "latest",
         "vows": ">= 0.5.6"
     },
     "engines": {
