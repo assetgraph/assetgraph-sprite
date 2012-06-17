@@ -137,15 +137,17 @@ directory, loads all the images linked to by ``background`` and
 ``-one-sprite-...`` instructions, then writes the resulting CSS and
 all the images to a different directory::
 
-    var AssetGraph = require('assetgraph'),
-        transfors = AssetGraph.transforms;
+    var AssetGraph = require('assetgraph');
 
-    new AssetGraph({root: "path/to/css/files"}).queue(
-        transforms.loadAssets('*.css'),
-        transforms.populate({followRelations: {type: 'CssImage'}}),
-        require('assetgraph-sprite')(),
-        transforms.writeAssetsToDisc({url: /^file:/}, "file:///my/output/dir")
-    ).run();
+    new AssetGraph({root: "path/to/css/files"})
+        .loadAssets('*.css')
+        .populate({followRelations: {type: 'CssImage'}})
+        .queue(require('assetgraph-sprite')())
+        .writeAssetsToDisc({url: /^file:/}, "file:///my/output/dir")
+        .run(function (err) {
+            if (err) throw err;
+            // All done!
+        });
 
 For a more elaborate example of how AssetGraph-sprite can fit in a
 workflow, see the `buildProduction script in AssetGraph-builder
