@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/One-com/assetgraph-sprite.png)](http://travis-ci.org/One-com/assetgraph-sprite)
 AssetGraph-sprite
 =================
 
