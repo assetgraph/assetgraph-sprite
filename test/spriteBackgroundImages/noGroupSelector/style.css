@@ -1,9 +1,9 @@
 .icon-foo {
-    -one-sprite-group: icons;
+    -ag-sprite-group: icons;
     background-image: url(foo.png);
 }
 
 .icon-bar {
-    -one-sprite-group: icons;
+    -ag-sprite-group: icons;
     background-image: url(bar.png);
 }

@@ -32,14 +32,14 @@ vows.describe('Sprite background images').addBatch({
             }
         }
     },
-    'After loading the same test case again, set the -one-sprite-image-format to jpg and sprite the background images': {
+    'After loading the same test case again, set the -ag-sprite-image-format to jpg and sprite the background images': {
         topic: function () {
             new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'}).queue(
                 transforms.loadAssets('style.css'),
                 transforms.populate(),
                 function (assetGraph) {
                     var cssAsset = assetGraph.findAssets({type: 'Css'})[0];
-                    cssAsset.parseTree.cssRules[0].style.setProperty('-one-sprite-image-format', 'jpg');
+                    cssAsset.parseTree.cssRules[0].style.setProperty('-ag-sprite-image-format', 'jpg');
                     cssAsset.markDirty();
                 },
                 require('../lib')()
