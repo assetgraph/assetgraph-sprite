@@ -33,5 +33,5 @@
     "scripts": {
         "prepublish": "npm install && vows"
     },
-    "main": "lib/index.js"
+    "main": "lib/spriteBackgroundImages.js"
 }

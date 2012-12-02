@@ -2,6 +2,7 @@ var vows = require('vows'),
     assert = require('assert'),
     _ = require('underscore'),
     AssetGraph = require('assetgraph'),
+    spriteBackgroundImages = require('../lib/spriteBackgroundImages'),
     transforms = AssetGraph.transforms;
 
 vows.describe('Sprite background images').addBatch({
@@ -26,7 +27,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should be down to one': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -43,7 +44,7 @@ vows.describe('Sprite background images').addBatch({
                     cssAsset.parseTree.cssRules[0].style.setProperty('-ag-sprite-image-format', 'jpg');
                     cssAsset.markDirty();
                 },
-                require('../lib')()
+                spriteBackgroundImages()
             ).run(this.callback);
         },
         'there should be no Png assets left in the graph': function (assetGraph) {
@@ -67,7 +68,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should be down to one': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -93,7 +94,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should be down to one': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -119,7 +120,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should be down to 2': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
@@ -146,7 +147,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -172,7 +173,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -198,7 +199,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -224,7 +225,7 @@ vows.describe('Sprite background images').addBatch({
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
-                assetGraph.queue(require('../lib')()).run(this.callback);
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
             },
             'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
