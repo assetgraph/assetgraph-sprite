@@ -13,9 +13,10 @@
         "registry": "http://registry.npmjs.org/"
     },
     "dependencies": {
-        "underscore": "=1.2.2",
         "bufferjs": "=1.0.2",
-        "seq": "=0.3.5"
+        "passerror": "=0.0.1",
+        "seq": "=0.3.5",
+        "underscore": "=1.2.2"
     },
     "optionalDependencies": {
         "canvas": "=0.12.1"
