@@ -1,0 +1,25 @@
+.icon {
+    -ag-sprite-selector-for-group: icons;
+    -ag-sprite-location: url(myImage.png?pngquant=128);
+}
+
+.icon-foo {
+    background-image: url(foo.png?sprite=icons);
+}
+
+.icon-bar {
+    background-image: url(bar.png?sprite=icons);
+}
+
+.icon2 {
+    -ag-sprite-selector-for-group: icons2;
+    -ag-sprite-location: url(?pngquant=128);
+}
+
+.icon2-foo {
+    background-image: url(foo.png?sprite=icons2);
+}
+
+.icon2-bar {
+    background-image: url(bar.png?sprite=icons2);
+}

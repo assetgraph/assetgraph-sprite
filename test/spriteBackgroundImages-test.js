@@ -1,5 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
+    _ = require('underscore'),
     AssetGraph = require('assetgraph'),
     transforms = AssetGraph.transforms;
 
@@ -54,7 +55,7 @@ vows.describe('Sprite background images').addBatch({
             assert.equal(jpegAssets[0].rawSrc.slice(6, 10).toString('ascii'), 'JFIF');
         }
     },
-    'After loading a simple test case with two background-images to be sprited, but with no group selector': {
+    'After loading a simple test case with a sprite with no group selector': {
         topic: function () {
             new AssetGraph({root: __dirname + '/spriteBackgroundImages/noGroupSelector/'}).queue(
                 transforms.loadAssets('style.css'),
@@ -75,8 +76,113 @@ vows.describe('Sprite background images').addBatch({
                 assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 2);
             },
             'the stylesheet should have the expected contents': function (assetGraph) {
-                assert.equal(assetGraph.findAssets({type: 'Css'})[0].text,
-                             '.icon-foo{background-image:url(20.png);background-position:0 0}.icon-bar{background-image:url(20.png);background-position:-12px 0}');
+                assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
+                               /^\.icon-foo\{background-image:url\(\d+\.png\);background-position:0 0\}\.icon-bar\{background-image:url\(\d+\.png\);background-position:-12px 0\}$/);
+            }
+        }
+    },
+    'After loading a simple test case with a sprites with two images where one has spriteNoGroup in its query string': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteNoGroup/'}).queue(
+                transforms.loadAssets('style.css'),
+                transforms.populate()
+            ).run(this.callback);
+        },
+        'the graph contains 2 Pngs': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(require('../lib')()).run(this.callback);
+            },
+            'the number of Png assets should be down to one': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+            },
+            'the graph should contain 2 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 2);
+            },
+            'the stylesheet should have the expected contents': function (assetGraph) {
+                assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
+                               /^\.foo\{background-image:url\((\d+\.png)\)}\.foo-foo\{background-image:url\(\1\);background-position:0 0\}\.foo-bar\{background-position:-12px 0\}$/);
+            }
+        }
+    },
+    'After loading a simple test case with two sprites with -ag-sprite-location properties in the group selector': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteLocation/'}).queue(
+                transforms.loadAssets('style.css'),
+                transforms.populate()
+            ).run(this.callback);
+        },
+        'the graph contains 4 Pngs': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 4);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(require('../lib')()).run(this.callback);
+            },
+            'the number of Png assets should be down to 2': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
+            },
+            'the graph should contain 2 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 2);
+            },
+            'the hrefs of the CssImage relations should have the expected values': function (assetGraph) {
+                var cssImageHrefs = _.pluck(assetGraph.findRelations({type: 'CssImage'}), 'href').sort();
+                assert.matches(cssImageHrefs[0], /^\d+\.png\?pngquant=128$/);
+                assert.equal(cssImageHrefs[1], 'myImage.png?pngquant=128');
+            }
+        }
+    },
+    'After loading a test case with an existing background-image property in the group selector': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'}).queue(
+                transforms.loadAssets('style.css'),
+                transforms.populate()
+            ).run(this.callback);
+        },
+        'the graph contains 1 Png': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(require('../lib')()).run(this.callback);
+            },
+            'the number of Png assets should stil be 1': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+            },
+            'the graph should contain 1 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 1);
+            },
+            'the stylesheet should have the expected contents': function (assetGraph) {
+                assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
+                               /^\.icon\{background-image:url\(\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
+            }
+        }
+    },
+    'After loading a test case with an existing background property in the group selector': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundInGroupSelector/'}).queue(
+                transforms.loadAssets('style.css'),
+                transforms.populate()
+            ).run(this.callback);
+        },
+        'the graph contains 1 Png': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(require('../lib')()).run(this.callback);
+            },
+            'the number of Png assets should stil be 1': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+            },
+            'the graph should contain 1 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 1);
+            },
+            'the stylesheet should have the expected contents': function (assetGraph) {
+                assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
+                               /^\.icon\{background:red url\(\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
             }
         }
     }

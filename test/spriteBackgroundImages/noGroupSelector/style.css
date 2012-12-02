@@ -1,9 +1,7 @@
 .icon-foo {
-    -ag-sprite-group: icons;
-    background-image: url(foo.png);
+    background-image: url(foo.png?sprite=icons);
 }
 
 .icon-bar {
-    -ag-sprite-group: icons;
-    background-image: url(bar.png);
+    background-image: url(bar.png?sprite=icons);
 }

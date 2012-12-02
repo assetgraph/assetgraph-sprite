@@ -5,18 +5,13 @@
 }
 
 .icon-foo {
-    -ag-sprite-group: icons;
-    -ag-sprite-padding: 10 10 10 10;
-    background-image: url(foo.png);
+    background-image: url(foo.png?sprite=icons&padding=10,10,10,10);
 }
 
 .icon-bar {
-    -ag-sprite-group: icons;
-    background-image: url(bar.png);
+    background-image: url(bar.png?sprite=icons);
 }
 
 .icon-quux {
-    -ag-sprite-group: icons;
-    -ag-sprite-no-group-selector: true;
-    background-image: url(quux.png);
+    background-image: url(quux.png?sprite=icons&nogroupselector=true);
 }

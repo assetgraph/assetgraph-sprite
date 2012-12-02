@@ -1,0 +1,8 @@
+.icon {
+    -ag-sprite-selector-for-group: icons;
+    background-image: !important;
+}
+
+.icon-foo {
+    background-image: url(foo.png?sprite=icons);
+}
