@@ -185,5 +185,31 @@ vows.describe('Sprite background images').addBatch({
                                /^\.icon\{background:red url\(\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
             }
         }
+    },
+    'After loading a test case with an existing background-position properties': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundPositions/'}).queue(
+                transforms.loadAssets('style.css'),
+                transforms.populate()
+            ).run(this.callback);
+        },
+        'the graph contains 2 Png': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(require('../lib')()).run(this.callback);
+            },
+            'the number of Png assets should stil be 1': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+            },
+            'the graph should contain 1 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 1);
+            },
+            'the stylesheet should have the expected contents': function (assetGraph) {
+                assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
+                               /^\.icon\{background-image:url\(\d+\.png\)}\.icon-foo\{background-position:0 0!important\}\.icon-bar\{background-position:-112px -40px!important\}$/);
+            }
+        }
     }
 })['export'](module);

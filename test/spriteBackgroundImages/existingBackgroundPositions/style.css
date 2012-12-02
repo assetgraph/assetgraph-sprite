@@ -1,0 +1,13 @@
+.icon {
+    -ag-sprite-selector-for-group: icons;
+}
+
+.icon-foo {
+    background-image: url(foo.png?sprite=icons);
+    background-position: !important;
+}
+
+.icon-bar {
+    background-image: url(bar.png?sprite=icons);
+    background-position: -100px -40px !important;
+}
