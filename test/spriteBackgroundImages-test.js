@@ -2,16 +2,15 @@ var vows = require('vows'),
     assert = require('assert'),
     _ = require('underscore'),
     AssetGraph = require('assetgraph'),
-    spriteBackgroundImages = require('../lib/spriteBackgroundImages'),
-    transforms = AssetGraph.transforms;
+    spriteBackgroundImages = require('../lib/spriteBackgroundImages');
 
 vows.describe('Sprite background images').addBatch({
     'After loading a simple test case with images and spriting instructions': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 4 assets': function (assetGraph) {
             assert.equal(assetGraph.findAssets().length, 4);
@@ -36,16 +35,16 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading the same test case again, set the -ag-sprite-image-format to jpg and sprite the background images': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate(),
-                function (assetGraph) {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'})
+                .loadAssets('style.css')
+                .populate()
+                .queue(function (assetGraph) {
                     var cssAsset = assetGraph.findAssets({type: 'Css'})[0];
                     cssAsset.parseTree.cssRules[0].style.setProperty('-ag-sprite-image-format', 'jpg');
                     cssAsset.markDirty();
-                },
-                spriteBackgroundImages()
-            ).run(this.callback);
+                })
+                .queue(spriteBackgroundImages())
+                .run(this.callback);
         },
         'there should be no Png assets left in the graph': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 0);
@@ -58,10 +57,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a simple test case with a sprite with no group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/noGroupSelector/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/noGroupSelector/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 2 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
@@ -84,10 +83,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a simple test case with a sprites with two images where one has spriteNoGroup in its query string': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteNoGroup/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteNoGroup/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 2 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
@@ -110,10 +109,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a simple test case with two sprites with -ag-sprite-location properties in the group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteLocation/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteLocation/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 4 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 4);
@@ -137,10 +136,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with an existing background-image property in the group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 1 Png': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -163,10 +162,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with an existing background property in the group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundInGroupSelector/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundInGroupSelector/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 1 Png': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
@@ -189,10 +188,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with an existing background-position properties': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundPositions/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundPositions/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 2 Png': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
@@ -215,10 +214,10 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with a background-image and a background that are !important': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/important/'}).queue(
-                transforms.loadAssets('style.css'),
-                transforms.populate()
-            ).run(this.callback);
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/important/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
         },
         'the graph contains 2 Png': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
