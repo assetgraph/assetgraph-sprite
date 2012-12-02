@@ -1,0 +1,11 @@
+.icon {
+    -ag-sprite-selector-for-group: icons;
+}
+
+.icon-foo {
+    background-image: url(foo.png?sprite=icons&spriteNoGroup) !important;
+}
+
+.icon-bar {
+    background: red url(bar.png?sprite=icons) !important;
+}
