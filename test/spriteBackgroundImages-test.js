@@ -148,7 +148,7 @@ vows.describe('Sprite background images').addBatch({
             topic: function (assetGraph) {
                 assetGraph.queue(require('../lib')()).run(this.callback);
             },
-            'the number of Png assets should stil be 1': function (assetGraph) {
+            'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
             },
             'the graph should contain 1 CssImage relations': function (assetGraph) {
@@ -174,7 +174,7 @@ vows.describe('Sprite background images').addBatch({
             topic: function (assetGraph) {
                 assetGraph.queue(require('../lib')()).run(this.callback);
             },
-            'the number of Png assets should stil be 1': function (assetGraph) {
+            'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
             },
             'the graph should contain 1 CssImage relations': function (assetGraph) {
@@ -200,7 +200,7 @@ vows.describe('Sprite background images').addBatch({
             topic: function (assetGraph) {
                 assetGraph.queue(require('../lib')()).run(this.callback);
             },
-            'the number of Png assets should stil be 1': function (assetGraph) {
+            'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
             },
             'the graph should contain 1 CssImage relations': function (assetGraph) {
@@ -226,7 +226,7 @@ vows.describe('Sprite background images').addBatch({
             topic: function (assetGraph) {
                 assetGraph.queue(require('../lib')()).run(this.callback);
             },
-            'the number of Png assets should stil be 1': function (assetGraph) {
+            'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
             },
             'the graph should contain 2 CssImage relations': function (assetGraph) {
