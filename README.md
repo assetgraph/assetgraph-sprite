@@ -4,32 +4,32 @@ AssetGraph-sprite
 A plugin (or "transform") for <a
 href="http://github.com/One-com/assetgraph">AssetGraph</a> that
 optimizes CSS background images by creating sprite images. The
-spriting is guided by a set of custom CSS properties with a
-`-ag-sprite` prefix.
+spriting is guided by GET parameters and a set of custom CSS
+properties with a `-ag-sprite` prefix.
 
 You can tell AssetGraph-sprite that you want to sprite a given CSS
-background image by adding a `-ag-sprite-group` property to the
-selector containing the `background` or `background-image` property:
+background image by adding a `sprite` parameter to its query string:
 
 ```css
-.classone {background-image: url(images/thething.png);      -ag-sprite-group: my-sprite-group; }
-.classtwo {background-image: url(images/theotherthing.png); -ag-sprite-group: my-sprite-group; }
+.classone {background-image: url(images/thething.png?sprite=mySpriteGroup); }
+.classtwo {background-image: url(images/theotherthing.png?sprite=mySpriteGroup); }
 ```
 
 This is valid CSS and will also work fine on its own in "development
 mode" without a compilation step, so you don't need to rebuild your
 project all the time, except when you want to test the spriting
 itself. After being run through the AssetGraph-sprite transform it
-will look something like this:
+will look something like this (`123` is the id of the generated sprite
+asset and could be any number):
 
 ```css
-.classone { background-image: url(7bda8ba87d.png); background-position: 0 0; }
-.classtwo { background-image: url(7bda8ba87d.png); background-position: -34px 0; }
+.classone { background-image: url(123.png); background-position: 0 0; }
+.classtwo { background-image: url(123.png); background-position: -34px 0; }
 ```
 
-Some additional properties are supported:
+Some additional parameters are supported:
 
-#### `-ag-sprite-padding: <top> <right> <bottom> <left>` ####
+#### `padding=<top>,<right>,<bottom>,<left>` ####
 
 Adds "keepaway space" around the image in the sprite. Sometimes
 useful if the background image is applied to an element that takes
@@ -39,12 +39,7 @@ values. The only supported unit is `px`. Defaults to `0 0 0 0`.  Not
 supported by the `jim-scott` packer (see the docs for
 `-ag-sprite-packer` below).
 
-#### `-ag-sprite-important: important` ####
-
-Makes sure that the injected `background-image` property pointing
-at the sprite image gets the `!important` suffix.
-
-#### `-ag-sprite-no-group-selector: true` ####
+#### `spriteNoGroup` ####
 
 Tells AssetGraph-sprite that you want this selector to contain a
 `background-image` property pointing at the sprite image, even
@@ -61,17 +56,34 @@ to add the `background-image` property pointing at the sprite to that
 selector using the `-ag-sprite-selector-for-group` property:
 
 ```css
-.foo { -ag-sprite-selector-for-group: my-sprite-group; }
-.classone {background-image: url(images/thething.png);      -ag-sprite-group: my-sprite-group; }
-.classtwo {background-image: url(images/theotherthing.png); -ag-sprite-group: my-sprite-group; }
+.foo { -ag-sprite-selector-for-group: mySpriteGroup; }
+.classone {background-image: url(images/thething.png?sprite=mySpriteGroup); }
+.classtwo {background-image: url(images/theotherthing.png?sprite=mySpriteGroup); }
 ```
 
-Which compiles to:
+... which compiles to:
 
 ```css
-.foo { background-image: url(7bda8ba87d.png); }
+.foo { background-image: url(123.png); }
 .classone { background-position: 0 0; }
 .classtwo { background-position: -34px 0; }
+```
+
+AssetGraph-sprite tries to preserve as much of the original CSS as
+possible, including existing `background` or `background-image`
+properties in the group selector and the priority (`!important`
+status), for example:
+
+```css
+.foo { -ag-sprite-selector-for-group: mySpriteGroup; background: red !important; }
+.classone { background: blue url(images/thething.png?sprite=mySpriteGroup) !important; }
+```
+
+Compiles to:
+
+```css
+.foo { background: red url(123.png) !important; }
+.classone { background: blue !important; background-position: 0 0; }
 ```
 
 You can tweak the generated sprite images by putting additional
@@ -80,7 +92,7 @@ selector", for example:
 
 ```css
 .foo {
-    -ag-sprite-selector-for-group: my-sprite-group;
+    -ag-sprite-selector-for-group: mySpriteGroup;
     -ag-sprite-packer: horizontal;
     -ag-sprite-background-color: #a767ac;
 }
@@ -103,12 +115,26 @@ specify `-ag-sprite-packer`, the default is `try-all`, which runs all
 the algorithms and chooses the packing that produces the smallest
 sprite image (area-wise).
 
-#### `-ag-sprite-important: important` ####
+#### `-ag-sprite-location: url(...)` ####
 
-Adds `!important` after the injected `background-image`. As mentioned
-above this is also supported for group selector-less sprites; simply add
-`-ag-sprite-important: important` to the selector containing
-the `background` or `background-image` selector).
+Specifies the desired location of the sprite. This is useful in
+combination with the `processImages` transform if you want to
+postprocess the generated sprite image:
+
+```css
+.foo {
+     -ag-sprite-selector-for-group: mySpriteGroup;
+     -ag-sprite-location: url(mySprite.png?pngquant=128);
+}
+.classone { background-position: 0 0; }
+```
+
+Compiles to:
+
+```css
+.foo { background: red url(mySprite.png?pngquant=128) !important; }
+.classone { background-position: 0 0; }
+```
 
 #### `-ag-sprite-image-format: png|jpg` ####
 
