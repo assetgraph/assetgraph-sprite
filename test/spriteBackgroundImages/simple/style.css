@@ -1,7 +1,7 @@
 .icon {
-    -ag-sprite-selector-for-group: icons;
-    -ag-sprite-packer: horizontal;
-    -ag-sprite-background-color: transparent;
+    -sprite-selector-for-group: icons;
+    -sprite-packer: horizontal;
+    -sprite-background-color: transparent;
 }
 
 .icon-foo {

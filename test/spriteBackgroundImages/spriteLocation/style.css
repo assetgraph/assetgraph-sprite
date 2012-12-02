@@ -1,6 +1,6 @@
 .icon {
-    -ag-sprite-selector-for-group: icons;
-    -ag-sprite-location: url(myImage.png?pngquant=128);
+    -sprite-selector-for-group: icons;
+    -sprite-location: url(myImage.png?pngquant=128);
 }
 
 .icon-foo {
@@ -12,8 +12,8 @@
 }
 
 .icon2 {
-    -ag-sprite-selector-for-group: icons2;
-    -ag-sprite-location: url(?pngquant=128);
+    -sprite-selector-for-group: icons2;
+    -sprite-location: url(?pngquant=128);
 }
 
 .icon2-foo {

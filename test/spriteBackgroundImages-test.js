@@ -33,14 +33,14 @@ vows.describe('Sprite background images').addBatch({
             }
         }
     },
-    'After loading the same test case again, set the -ag-sprite-image-format to jpg and sprite the background images': {
+    'After loading the same test case again, set the -sprite-image-format to jpg and sprite the background images': {
         topic: function () {
             new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'})
                 .loadAssets('style.css')
                 .populate()
                 .queue(function (assetGraph) {
                     var cssAsset = assetGraph.findAssets({type: 'Css'})[0];
-                    cssAsset.parseTree.cssRules[0].style.setProperty('-ag-sprite-image-format', 'jpg');
+                    cssAsset.parseTree.cssRules[0].style.setProperty('-sprite-image-format', 'jpg');
                     cssAsset.markDirty();
                 })
                 .queue(spriteBackgroundImages())
@@ -107,7 +107,7 @@ vows.describe('Sprite background images').addBatch({
             }
         }
     },
-    'After loading a simple test case with two sprites with -ag-sprite-location properties in the group selector': {
+    'After loading a simple test case with two sprites with -sprite-location properties in the group selector': {
         topic: function () {
             new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteLocation/'})
                 .loadAssets('style.css')
