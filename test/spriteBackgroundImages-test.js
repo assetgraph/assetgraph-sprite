@@ -186,6 +186,32 @@ vows.describe('Sprite background images').addBatch({
             }
         }
     },
+    'After loading a test case with an existing background property in the sprite selector': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundInSpriteSelector/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
+        },
+        'the graph contains 3 Png': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 3);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
+            },
+            'the number of Png assets should still be 1': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+            },
+            'the graph should contain 2 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 2);
+            },
+            'the stylesheet should have the expected contents': function (assetGraph) {
+                assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
+                               /^\.icon\{background-image:url\((\d+\.png)\)}\.icon-foo\{background-position:0 0\}.icon-bar{background:-12px 4px}.icon-quux{background:url\(\1\) -1610px -4px}$/);
+            }
+        }
+    },
     'After loading a test case with existing background-position properties': {
         topic: function () {
             new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundPositions/'})

@@ -1,0 +1,15 @@
+.icon {
+    -sprite-selector-for-group: icons;
+}
+
+.icon-foo {
+    background: url(foo.png?sprite=icons);
+}
+
+.icon-bar {
+    background: url(bar.png?sprite=icons) 0 4px;
+}
+
+.icon-quux {
+    background: url(quux.png?sprite=icons&spriteNoGroup) 2px -4px;
+}
