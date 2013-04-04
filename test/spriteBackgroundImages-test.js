@@ -186,15 +186,15 @@ vows.describe('Sprite background images').addBatch({
             }
         }
     },
-    'After loading a test case with an existing background-position properties': {
+    'After loading a test case with existing background-position properties': {
         topic: function () {
             new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundPositions/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
         },
-        'the graph contains 2 Png': function (assetGraph) {
-            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
+        'the graph contains 3 Png': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 3);
         },
         'then spriting the background images': {
             topic: function (assetGraph) {
@@ -203,12 +203,12 @@ vows.describe('Sprite background images').addBatch({
             'the number of Png assets should still be 1': function (assetGraph) {
                 assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
             },
-            'the graph should contain 1 CssImage relations': function (assetGraph) {
-                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 1);
+            'the graph should contain 2 CssImage relations': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 2);
             },
             'the stylesheet should have the expected contents': function (assetGraph) {
                 assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
-                               /^\.icon\{background-image:url\(\d+\.png\)}\.icon-foo\{background-position:0 0!important\}\.icon-bar\{background-position:-112px -40px!important\}$/);
+                               /^\.icon\{background-image:url\((\d+\.png)\)}\.icon-foo\{background-position:0 0!important\}\.icon-bar\{background-position:-112px -40px!important\}\.icon-quux\{background-image:url\(\1\);background-position:-1610px 2px!important\}$/);
             }
         }
     },

@@ -11,3 +11,8 @@
     background-image: url(bar.png?sprite=icons);
     background-position: -100px -40px !important;
 }
+
+.icon-quux {
+    background-image: url(bar.png?sprite=icons&spriteNoGroup);
+    background-position: 2px 2px !important;
+}
