@@ -141,7 +141,7 @@ vows.describe('Sprite background images').addBatch({
                 .populate()
                 .run(this.callback);
         },
-        'the graph contains 1 Png': function (assetGraph) {
+        'the graph contains 1 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
         },
         'then spriting the background images': {
@@ -193,7 +193,7 @@ vows.describe('Sprite background images').addBatch({
                 .populate()
                 .run(this.callback);
         },
-        'the graph contains 3 Png': function (assetGraph) {
+        'the graph contains 3 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 3);
         },
         'then spriting the background images': {
@@ -219,7 +219,7 @@ vows.describe('Sprite background images').addBatch({
                 .populate()
                 .run(this.callback);
         },
-        'the graph contains 3 Png': function (assetGraph) {
+        'the graph contains 3 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 3);
         },
         'then spriting the background images': {
@@ -245,7 +245,7 @@ vows.describe('Sprite background images').addBatch({
                 .populate()
                 .run(this.callback);
         },
-        'the graph contains 2 Png': function (assetGraph) {
+        'the graph contains 2 Pngs': function (assetGraph) {
             assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
         },
         'then spriting the background images': {
@@ -261,6 +261,28 @@ vows.describe('Sprite background images').addBatch({
             'the stylesheet should have the expected contents': function (assetGraph) {
                 assert.matches(assetGraph.findAssets({type: 'Css'})[0].text,
                                /^\.icon\{background-image:(url\(\d+\.png\))}\.icon-foo\{background-image:\1!important;background-position:0 0\}\.icon-bar\{background:red!important;background-position:-12px 0\}$/);
+            }
+        }
+    },
+    'After loading a test case with broken images': {
+        topic: function () {
+            new AssetGraph({root: __dirname + '/spriteBackgroundImages/brokenImages/'})
+                .loadAssets('style.css')
+                .populate()
+                .run(this.callback);
+        },
+        'the graph contains 2 Pngs': function (assetGraph) {
+            assert.equal(assetGraph.findAssets({type: 'Png'}).length, 2);
+        },
+        'then spriting the background images': {
+            topic: function (assetGraph) {
+                assetGraph.queue(spriteBackgroundImages()).run(this.callback);
+            },
+            'the number of Png assets should still be 1': function (assetGraph) {
+                assert.equal(assetGraph.findAssets({type: 'Png'}).length, 1);
+            },
+            'the graph should contain 1 CssImage relation': function (assetGraph) {
+                assert.equal(assetGraph.findRelations({type: 'CssImage'}).length, 1);
             }
         }
     }

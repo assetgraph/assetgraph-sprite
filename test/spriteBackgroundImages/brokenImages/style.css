@@ -1,0 +1,11 @@
+.icon {
+    -sprite-selector-for-group: icons;
+}
+
+.icon-foo {
+    background-image: url(broken1.png?sprite=icons);
+}
+
+.icon-bar {
+    background-image: url(broken2.png?sprite=icons);
+}
