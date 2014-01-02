@@ -1,3 +1,7 @@
+[![NPM version](https://badge.fury.io/js/assetgraph-sprite.png)](http://badge.fury.io/js/assetgraph)
+[![Build Status](https://travis-ci.org/One-com/assetgraph-sprite.png?branch=master)](https://travis-ci.org/One-com/assetgraph)
+[![Dependency Status](https://david-dm.org/One-com/assetgraph-sprite.png)](https://david-dm.org/One-com/assetgraph)
+
 AssetGraph-sprite
 =================
 
