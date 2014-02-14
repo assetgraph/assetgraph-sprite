@@ -1,9 +1,8 @@
-[![NPM version](https://badge.fury.io/js/assetgraph-sprite.png)](http://badge.fury.io/js/assetgraph)
-[![Build Status](https://travis-ci.org/One-com/assetgraph-sprite.png?branch=master)](https://travis-ci.org/One-com/assetgraph)
-[![Dependency Status](https://david-dm.org/One-com/assetgraph-sprite.png)](https://david-dm.org/One-com/assetgraph)
-
 AssetGraph-sprite
 =================
+[![NPM version](https://badge.fury.io/js/assetgraph-sprite.png)](http://badge.fury.io/js/assetgraph)
+[![Build Status](https://travis-ci.org/assetgraph/assetgraph-sprite.png?branch=master)](https://travis-ci.org/assetgraph/assetgraph)
+[![Dependency Status](https://david-dm.org/assetgraph/assetgraph-sprite.png)](https://david-dm.org/assetgraph/assetgraph)
 
 A plugin (or "transform") for <a
 href="http://github.com/One-com/assetgraph">AssetGraph</a> that
