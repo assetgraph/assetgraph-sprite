@@ -21,9 +21,11 @@
     "canvas": "=1.1.2"
   },
   "devDependencies": {
-    "assetgraph": "=1.2.3",
+    "assetgraph": "=1.6.31",
     "jshint": "=2.5.1",
-    "vows": ">=0.6.2"
+    "mocha": "=1.19.0",
+    "unexpected": "=3.2.0",
+    "urltools": "=0.1.0"
   },
   "engines": {
     "node": ">=0.8.0"
@@ -32,7 +34,9 @@
     "lib": "./lib"
   },
   "scripts": {
-    "lint": "jshint ."
+    "lint": "jshint .",
+    "test": "npm run lint && mocha",
+    "travis": "npm run lint && mocha"
   },
   "main": "lib/spriteBackgroundImages.js"
 }
