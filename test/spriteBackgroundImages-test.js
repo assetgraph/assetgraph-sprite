@@ -7,7 +7,7 @@ var vows = require('vows'),
 vows.describe('Sprite background images').addBatch({
     'After loading a simple test case with images and spriting instructions': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/simple/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -35,7 +35,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading the same test case again, set the -sprite-image-format to jpg and sprite the background images': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/simple/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/simple/'})
                 .loadAssets('style.css')
                 .populate()
                 .queue(function (assetGraph) {
@@ -57,7 +57,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a simple test case with a sprite with no group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/noGroupSelector/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/noGroupSelector/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -83,7 +83,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a simple test case with a sprites with two images where one has spriteNoGroup in its query string': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteNoGroup/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/spriteNoGroup/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -109,7 +109,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a simple test case with two sprites with -sprite-location properties in the group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/spriteLocation/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/spriteLocation/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -136,7 +136,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with an existing background-image property in the group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -162,7 +162,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with an existing background property in the group selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundInGroupSelector/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundInGroupSelector/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -188,7 +188,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with an existing background property in the sprite selector': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundInSpriteSelector/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundInSpriteSelector/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -214,7 +214,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with existing background-position properties': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/existingBackgroundPositions/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundPositions/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -240,7 +240,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with a background-image and a background that are !important': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/important/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/important/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
@@ -266,7 +266,7 @@ vows.describe('Sprite background images').addBatch({
     },
     'After loading a test case with broken images': {
         topic: function () {
-            new AssetGraph({root: __dirname + '/spriteBackgroundImages/brokenImages/'})
+            new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/brokenImages/'})
                 .loadAssets('style.css')
                 .populate()
                 .run(this.callback);
