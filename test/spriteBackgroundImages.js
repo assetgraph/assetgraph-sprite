@@ -1,5 +1,4 @@
-/*global describe, it*/
-var _ = require('underscore'),
+/*global describe, it*/var _ = require('underscore'),
     expect = require('./unexpected-with-plugins'),
     AssetGraph = require('assetgraph'),
     spriteBackgroundImages = require('../lib/spriteBackgroundImages');
@@ -189,8 +188,26 @@ describe('spriteBackgroundImages', function () {
             })
             .queue(spriteBackgroundImages())
             .queue(function (assetGraph) {
-                expect(assetGraph, 'to contain assets', 'Png');
+                expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage');
+            })
+            .run(done);
+    });
+
+    it('should handle images with wrong extensions', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/imagesWithWrongExtensions/'})
+            .loadAssets('style.css')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Png');
+                expect(assetGraph, 'to contain asset', 'Jpeg');
+                expect(assetGraph, 'to contain relations', 'CssImage', 2);
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Png');
+                expect(assetGraph, 'to contain no asset', 'Jpeg');
+                expect(assetGraph, 'to contain relations', 'CssImage', 2);
             })
             .run(done);
     });

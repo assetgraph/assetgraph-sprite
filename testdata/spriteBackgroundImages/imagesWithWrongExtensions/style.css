@@ -1,0 +1,7 @@
+body {
+    background-image: url(actuallyAJpeg.png?sprite=foo);
+}
+
+.quux {
+    background-image: url(actuallyAPng.jpg?sprite=foo);
+}
