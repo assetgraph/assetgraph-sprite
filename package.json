@@ -12,6 +12,9 @@
   "publishConfig": {
     "registry": "http://registry.npmjs.org/"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "passerror": "=0.0.1",
     "seq": "=0.3.5",
