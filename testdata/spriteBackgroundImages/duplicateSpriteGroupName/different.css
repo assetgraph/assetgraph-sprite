@@ -1,0 +1,13 @@
+.icon {
+    -sprite-selector-for-group: icons;
+    -sprite-packer: horizontal;
+    -sprite-background-color: transparent;
+}
+
+.icon-foo {
+    background-image: url(foo.png?sprite=icons);
+}
+
+.icon-bar {
+    background-image: url(bar.png?sprite=icons);
+}

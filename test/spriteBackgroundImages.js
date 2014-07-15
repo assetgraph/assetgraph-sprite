@@ -211,4 +211,29 @@ describe('spriteBackgroundImages', function () {
             })
             .run(done);
     });
+
+    it('should handle duplicate identical sprite sprite group names', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'})
+            .logEvents()
+            .loadAssets('identical*.css')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain assets', 'Css', 2);
+                expect(assetGraph, 'to contain assets', 'Png', 3);
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                var cssAssets = assetGraph.findAssets({ type: 'Css'});
+
+                assetGraph.findAssets({ type: 'Css'}).forEach(function (asset) {
+                    console.log(asset.urlOrDescription, asset.text);
+                    console.log('-----');
+                });
+
+                expect(assetGraph, 'to contain asset', 'Png');
+                // expect(assetGraph, 'to contain relations', 'CssImage', 2);
+                expect(cssAssets[0].text, 'to equal', cssAssets[1].text);
+            })
+            .run(done);
+    });
 });
