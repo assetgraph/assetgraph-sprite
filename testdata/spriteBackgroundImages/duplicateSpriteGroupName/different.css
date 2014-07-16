@@ -1,7 +1,6 @@
 .icon {
     -sprite-selector-for-group: icons;
     -sprite-packer: horizontal;
-    -sprite-background-color: transparent;
 }
 
 .icon-foo {

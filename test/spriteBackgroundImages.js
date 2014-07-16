@@ -212,7 +212,7 @@ describe('spriteBackgroundImages', function () {
             .run(done);
     });
 
-    it('should handle duplicate identical sprite sprite group names', function (done) {
+    it('should handle duplicate identical sprite group names', function (done) {
         new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'})
             .loadAssets('identical*.css')
             .populate()
@@ -224,14 +224,36 @@ describe('spriteBackgroundImages', function () {
             .queue(function (assetGraph) {
                 var cssAssets = assetGraph.findAssets({ type: 'Css'});
 
-                assetGraph.findAssets({ type: 'Css'}).forEach(function (asset) {
-                    console.log(asset.urlOrDescription, asset.text);
-                    console.log('-----');
-                });
-
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
                 expect(cssAssets[0].text, 'to equal', cssAssets[1].text);
+            })
+            .run(done);
+    });
+
+    it('should warn on identical sprite group names', function (done) {
+        var warnings = [];
+
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'})
+            .on('warn', function (warning) {
+                warnings.push(warning);
+            })
+            .loadAssets('identical1.css', 'different.css')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain assets', 'Css', 2);
+                expect(assetGraph, 'to contain assets', 'Png', 3);
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                var cssAssets = assetGraph.findAssets({ type: 'Css'});
+
+                expect(assetGraph, 'to contain asset', 'Png');
+                expect(assetGraph, 'to contain relations', 'CssImage', 1);
+                expect(cssAssets[0].text, 'not to equal', cssAssets[1].text);
+
+                expect(warnings, 'to be a non-empty array');
+                expect(warnings.length, 'to be', 1);
             })
             .run(done);
     });
