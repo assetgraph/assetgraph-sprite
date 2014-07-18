@@ -53,7 +53,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.icon-foo\{background-image:url\(\d+\.png\);background-position:0 0\}\.icon-bar\{background-image:url\(\d+\.png\);background-position:-12px 0\}$/);
+                               /^\.icon-foo\{background-image:url\(sprite-.*?-\d+\.png\);background-position:0 0\}\.icon-bar\{background-image:url\(sprite-.*?-\d+\.png\);background-position:-12px 0\}$/);
             })
             .run(done);
     });
@@ -70,7 +70,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.foo\{background-image:url\((\d+\.png)\)}\.foo-foo\{background-image:url\(\1\);background-position:0 0\}\.foo-bar\{background-position:-12px 0\}$/);
+                               /^\.foo\{background-image:url\((sprite-.*?-\d+\.png)\)}\.foo-foo\{background-image:url\(\1\);background-position:0 0\}\.foo-bar\{background-position:-12px 0\}$/);
             })
             .run(done);
     });
@@ -88,7 +88,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
 
                 var cssImageHrefs = _.pluck(assetGraph.findRelations({type: 'CssImage'}), 'href').sort();
-                expect(cssImageHrefs[0], 'to match', /^\d+\.png\?pngquant=128$/);
+                expect(cssImageHrefs[0], 'to match', /^sprite-.*?-\d+\.png\?pngquant=128$/);
                 expect(cssImageHrefs[1], 'to equal', 'myImage.png?pngquant=128');
             })
             .run(done);
@@ -106,7 +106,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage');
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.icon\{background-image:url\(\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
+                               /^\.icon\{background-image:url\(sprite-.*?-\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
             })
             .run(done);
     });
@@ -123,7 +123,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relation', 'CssImage');
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.icon\{background:red url\(\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
+                               /^\.icon\{background:red url\(sprite-.*?-\d+\.png\)!important}\.icon-foo\{background-position:0 0\}$/);
             })
             .run(done);
     });
@@ -140,7 +140,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.icon\{background-image:url\((\d+\.png)\)}\.icon-foo\{background-position:0 0\}.icon-bar{background:-12px 4px}.icon-quux{background:url\(\1\) -1610px -4px}$/);
+                               /^\.icon\{background-image:url\((sprite-.*?-\d+\.png)\)}\.icon-foo\{background-position:0 0\}.icon-bar{background:-12px 4px}.icon-quux{background:url\(\1\) -1610px -4px}$/);
             })
             .run(done);
     });
@@ -157,7 +157,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.icon\{background-image:url\((\d+\.png)\)}\.icon-foo\{background-position:0 0!important\}\.icon-bar\{background-position:-112px -40px!important\}\.icon-quux\{background-image:url\(\1\);background-position:-1610px 2px!important\}$/);
+                               /^\.icon\{background-image:url\((sprite-.*?-\d+\.png)\)}\.icon-foo\{background-position:0 0!important\}\.icon-bar\{background-position:-112px -40px!important\}\.icon-quux\{background-image:url\(\1\);background-position:-1610px 2px!important\}$/);
             })
             .run(done);
     });
@@ -174,7 +174,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain asset', 'Png');
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
                 expect(assetGraph.findAssets({type: 'Css'})[0].text, 'to match',
-                               /^\.icon\{background-image:(url\(\d+\.png\))}\.icon-foo\{background-image:\1!important;background-position:0 0\}\.icon-bar\{background:red!important;background-position:-12px 0\}$/);
+                               /^\.icon\{background-image:(url\(sprite-.*?-\d+\.png\))}\.icon-foo\{background-image:\1!important;background-position:0 0\}\.icon-bar\{background:red!important;background-position:-12px 0\}$/);
             })
             .run(done);
     });
