@@ -257,4 +257,22 @@ describe('spriteBackgroundImages', function () {
             })
             .run(done);
     });
+
+    it('should get the background-position right when spriting a @2x image', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/retina/'})
+            .loadAssets('index.html')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain assets', 'Css', 1);
+                expect(assetGraph, 'to contain assets', 'Png', 2);
+            })
+            .queue(spriteBackgroundImages())
+            .writeAssetsToDisc({url: /file:/}, "file:///tmp/foo/")
+            .queue(function (assetGraph) {
+                var cssAssets = assetGraph.findAssets({ type: 'Css'});
+
+                expect(assetGraph, 'to contain asset', 'Png');
+            })
+            .run(done);
+    });
 });
