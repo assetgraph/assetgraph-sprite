@@ -276,7 +276,7 @@ describe('spriteBackgroundImages', function () {
 
                 assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.retina' } }).forEach(function (relation) {
                     expect(relation.to.devicePixelRatio, 'to be', 2);
-                    expect(relation.cssRule.style, 'not to have property', 'background-size');
+                    expect(relation.cssRule.style, 'to have property', 'background-size');
                 });
             })
             .queue(spriteBackgroundImages())
