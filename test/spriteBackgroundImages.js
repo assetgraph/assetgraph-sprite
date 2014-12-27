@@ -1,4 +1,5 @@
-/*global describe, it*/var _ = require('underscore'),
+/*global describe, it*/
+var _ = require('underscore'),
     expect = require('./unexpected-with-plugins'),
     AssetGraph = require('assetgraph'),
     spriteBackgroundImages = require('../lib/spriteBackgroundImages');
