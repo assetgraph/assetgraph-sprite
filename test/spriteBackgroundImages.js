@@ -292,7 +292,8 @@ describe('spriteBackgroundImages', function () {
 
                 assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.retina' } }).forEach(function (relation) {
                     expect(relation.cssRule.style, 'to have property', 'background-size');
-                    expect(relation.cssRule.style.getPropertyValue('background-size'), 'to be', '88.5px 59px');
+                    expect(relation.cssRule.style.getPropertyValue('background-size'), 'to be', '89px 59px');
+                    expect(relation.cssRule.style.getPropertyValue('background-position'), 'to be', '-30px 0');
                 });
             })
             .run(done);
