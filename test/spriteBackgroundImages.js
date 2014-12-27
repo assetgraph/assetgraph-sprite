@@ -265,11 +265,34 @@ describe('spriteBackgroundImages', function () {
             .queue(function (assetGraph) {
                 expect(assetGraph, 'to contain assets', 'Css', 1);
                 expect(assetGraph, 'to contain assets', 'Png', 2);
+                expect(assetGraph, 'to contain assets', { type: 'Png', devicePixelRatio: 1 }, 1);
+                expect(assetGraph, 'to contain assets', { type: 'Png', devicePixelRatio: 2 }, 1);
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.regular' } }).forEach(function (relation) {
+                    expect(relation.to.devicePixelRatio, 'to be', 1);
+                    expect(relation.cssRule.style, 'not to have property', 'background-size');
+                });
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.retina' } }).forEach(function (relation) {
+                    expect(relation.to.devicePixelRatio, 'to be', 2);
+                    expect(relation.cssRule.style, 'not to have property', 'background-size');
+                });
             })
             .queue(spriteBackgroundImages())
-            .writeAssetsToDisc({url: /file:/}, 'file:///tmp/foo/')
             .queue(function (assetGraph) {
-                expect(assetGraph, 'to contain asset', 'Png');
+                expect(assetGraph, 'to contain asset', 'Png', 1);
+                expect(assetGraph, 'to contain relations', 'CssImage', 2);
+                expect(assetGraph, 'to contain relations', { type: 'CssImage', cssRule: { selectorText: '.regular' } }, 1);
+                expect(assetGraph, 'to contain relations', { type: 'CssImage', cssRule: { selectorText: '.retina' } }, 1);
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.regular' } }).forEach(function (relation) {
+                    expect(relation.cssRule.style, 'not to have property', 'background-size');
+                });
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.retina' } }).forEach(function (relation) {
+                    expect(relation.cssRule.style, 'to have property', 'background-size');
+                    expect(relation.cssRule.style.getPropertyValue('background-size'), 'to be', '88.5px 59px');
+                });
             })
             .run(done);
     });
