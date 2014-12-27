@@ -298,4 +298,21 @@ describe('spriteBackgroundImages', function () {
             })
             .run(done);
     });
+
+    it('should sprite retina @2x inline styled backgrounds correctly', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/retina/'})
+            .loadAssets('inline-style.html')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain assets', 'Css', 3);
+                expect(assetGraph, 'to contain assets', 'Png', 2);
+                expect(assetGraph, 'to contain relations', 'CssImage', 4);
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Png', 1);
+                expect(assetGraph, 'to contain relations', 'CssImage', 1);
+            })
+            .run(done);
+    });
 });
