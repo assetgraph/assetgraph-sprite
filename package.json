@@ -25,10 +25,10 @@
     "underscore": "=1.4.2"
   },
   "optionalDependencies": {
-    "canvas": "=1.1.2"
+    "canvas": "=1.1.6"
   },
   "devDependencies": {
-    "assetgraph": "1.14.4",
+    "assetgraph": "1.15.1",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
     "jshint": "=2.5.1",

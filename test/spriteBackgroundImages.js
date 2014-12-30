@@ -1,4 +1,5 @@
-/*global describe, it*/var _ = require('underscore'),
+/*global describe, it*/
+var _ = require('underscore'),
     expect = require('./unexpected-with-plugins'),
     AssetGraph = require('assetgraph'),
     spriteBackgroundImages = require('../lib/spriteBackgroundImages');
@@ -254,6 +255,63 @@ describe('spriteBackgroundImages', function () {
 
                 expect(warnings, 'to be a non-empty array');
                 expect(warnings.length, 'to be', 1);
+            })
+            .run(done);
+    });
+
+    it('should get the background-position right when spriting a @2x image', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/retina/'})
+            .loadAssets('index.html')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain assets', 'Css', 1);
+                expect(assetGraph, 'to contain assets', 'Png', 2);
+                expect(assetGraph, 'to contain assets', { type: 'Png', devicePixelRatio: 1 }, 1);
+                expect(assetGraph, 'to contain assets', { type: 'Png', devicePixelRatio: 2 }, 1);
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.regular' } }).forEach(function (relation) {
+                    expect(relation.to.devicePixelRatio, 'to be', 1);
+                    expect(relation.cssRule.style, 'not to have property', 'background-size');
+                });
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.retina' } }).forEach(function (relation) {
+                    expect(relation.to.devicePixelRatio, 'to be', 2);
+                    expect(relation.cssRule.style, 'to have property', 'background-size');
+                });
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Png', 1);
+                expect(assetGraph, 'to contain relations', 'CssImage', 2);
+                expect(assetGraph, 'to contain relations', { type: 'CssImage', cssRule: { selectorText: '.regular' } }, 1);
+                expect(assetGraph, 'to contain relations', { type: 'CssImage', cssRule: { selectorText: '.retina' } }, 1);
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.regular' } }).forEach(function (relation) {
+                    expect(relation.cssRule.style, 'not to have property', 'background-size');
+                });
+
+                assetGraph.findRelations({ type: 'CssImage', cssRule: { selectorText: '.retina' } }).forEach(function (relation) {
+                    expect(relation.cssRule.style, 'to have property', 'background-size');
+                    expect(relation.cssRule.style.getPropertyValue('background-size'), 'to be', '89px 59px');
+                    expect(relation.cssRule.style.getPropertyValue('background-position'), 'to be', '-30px 0');
+                });
+            })
+            .run(done);
+    });
+
+    it('should sprite retina @2x inline styled backgrounds correctly', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/retina/'})
+            .loadAssets('inline-style.html')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain assets', 'Css', 3);
+                expect(assetGraph, 'to contain assets', 'Png', 2);
+                expect(assetGraph, 'to contain relations', 'CssImage', 4);
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Png', 1);
+                expect(assetGraph, 'to contain relations', 'CssImage', 1);
             })
             .run(done);
     });
