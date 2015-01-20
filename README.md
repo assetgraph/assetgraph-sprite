@@ -2,10 +2,10 @@ AssetGraph-sprite
 =================
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/assetgraph/assetgraph-sprite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![NPM version](https://badge.fury.io/js/assetgraph-sprite.png)](http://badge.fury.io/js/assetgraph-sprite)
-[![Build Status](https://travis-ci.org/assetgraph/assetgraph-sprite.png?branch=master)](https://travis-ci.org/assetgraph/assetgraph-sprite)
-[![Dependency Status](https://david-dm.org/assetgraph/assetgraph-sprite.png)](https://david-dm.org/assetgraph/assetgraph-sprite)
-[![Coverage Status](https://coveralls.io/repos/assetgraph/assetgraph-sprite/badge.png)](https://coveralls.io/r/assetgraph/assetgraph-sprite)
+[![NPM version](https://badge.fury.io/js/assetgraph-sprite.svg)](http://badge.fury.io/js/assetgraph-sprite)
+[![Build Status](https://travis-ci.org/assetgraph/assetgraph-sprite.svg?branch=master)](https://travis-ci.org/assetgraph/assetgraph-sprite)
+[![Coverage Status](https://coveralls.io/repos/assetgraph/assetgraph-sprite/badge.svg?style=flat)](https://coveralls.io/r/assetgraph/assetgraph-sprite)
+[![Dependency Status](https://david-dm.org/assetgraph/assetgraph-sprite.svg)](https://david-dm.org/assetgraph/assetgraph-sprite)
 
 A plugin (or "transform") for <a
 href="http://github.com/One-com/assetgraph">AssetGraph</a> that
