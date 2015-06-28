@@ -37,9 +37,6 @@
     "unexpected": "5.0.0-beta32",
     "urltools": "=0.1.0"
   },
-  "engines": {
-    "node": ">=0.8.0"
-  },
   "directories": {
     "lib": "./lib"
   },
