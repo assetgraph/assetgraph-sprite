@@ -33,7 +33,6 @@
     "istanbul": "^0.3.0",
     "jshint": "=2.5.1",
     "mocha": "=1.19.0",
-    "mocha-lcov-reporter": "0.0.1",
     "unexpected": "8.5.0",
     "urltools": "=0.1.0"
   },
