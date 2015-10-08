@@ -33,7 +33,7 @@
     "istanbul": "^0.3.0",
     "jshint": "2.8.0",
     "mocha": "2.3.3",
-    "unexpected": "8.5.0",
+    "unexpected": "10.0.1",
     "urltools": "=0.1.0"
   },
   "directories": {
