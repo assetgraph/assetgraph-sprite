@@ -25,7 +25,7 @@
     "underscore": "1.8.3"
   },
   "optionalDependencies": {
-    "canvas": "1.2.10"
+    "canvas": "1.2.11"
   },
   "devDependencies": {
     "assetgraph": "1.20.1",
