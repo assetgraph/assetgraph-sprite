@@ -1,5 +1,5 @@
 /*global describe, it*/
-var _ = require('underscore'),
+var pluck = require('lodash.pluck'),
     expect = require('./unexpected-with-plugins'),
     AssetGraph = require('assetgraph'),
     spriteBackgroundImages = require('../lib/spriteBackgroundImages');
@@ -88,7 +88,7 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain assets', 'Png', 2);
                 expect(assetGraph, 'to contain relations', 'CssImage', 2);
 
-                var cssImageHrefs = _.pluck(assetGraph.findRelations({type: 'CssImage'}), 'href').sort();
+                var cssImageHrefs = pluck(assetGraph.findRelations({type: 'CssImage'}), 'href').sort();
                 expect(cssImageHrefs[0], 'to equal', 'myImage.png?pngquant=128');
                 expect(cssImageHrefs[1], 'to match', /^sprite-.*?-\d+\.png\?pngquant=128$/);
             })
