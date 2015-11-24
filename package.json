@@ -31,7 +31,7 @@
   "devDependencies": {
     "assetgraph": "assetgraph/assetgraph#1acae9e317604380fa5c1e5bd61e3ca266ae09f9",
     "coveralls": "2.11.4",
-    "istanbul": "0.4.0",
+    "istanbul": "0.4.1",
     "jshint": "2.8.0",
     "lodash.pluck": "3.1.2",
     "mocha": "2.3.3",
