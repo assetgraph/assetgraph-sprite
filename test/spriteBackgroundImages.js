@@ -316,8 +316,8 @@ describe('spriteBackgroundImages', function () {
             .run(done);
     });
 
-    it('should error out if an SVG image is added to a sprite', function () {
-        return expect(new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/svgInSprite/'})
+    it('should error out if an SVG image is added to a sprite', function (done) {
+        new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/svgInSprite/'})
             .loadAssets('index.html')
             .populate()
             .queue(function (assetGraph) {
@@ -327,7 +327,10 @@ describe('spriteBackgroundImages', function () {
             .queue(function (assetGraph) {
                 expect(assetGraph, 'to contain asset', 'Png', 1);
                 expect(assetGraph, 'to contain relations', 'CssImage', 1);
-            }),
-            'to be rejected with', /error while reading from input stream/);
+            })
+            .run(function (err) {
+                expect(err, 'to satisfy', /error while reading from input stream/);
+                done();
+            });
     });
 });
