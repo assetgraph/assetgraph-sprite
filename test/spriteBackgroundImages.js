@@ -305,4 +305,19 @@ describe('spriteBackgroundImages', function () {
                 expect(assetGraph, 'to contain relations', 'CssImage', 1);
             });
     });
+
+    it('should error out if an SVG image is added to a sprite', function () {
+        return expect(new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/svgInSprite/'})
+            .loadAssets('index.html')
+            .populate()
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Svg');
+            })
+            .queue(spriteBackgroundImages())
+            .queue(function (assetGraph) {
+                expect(assetGraph, 'to contain asset', 'Png', 1);
+                expect(assetGraph, 'to contain relations', 'CssImage', 1);
+            }),
+            'to be rejected with', /error while reading from input stream/);
+    });
 });
