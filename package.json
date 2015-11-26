@@ -2,7 +2,7 @@
   "name": "assetgraph-sprite",
   "description": "AssetGraph plugin for creating sprites from background images",
   "repository": "git://github.com/One-com/assetgraph-sprite.git",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "maintainers": [
     {
       "name": "Andreas Lind",
