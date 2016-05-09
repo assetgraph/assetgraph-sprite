@@ -29,7 +29,7 @@
     "canvas": "1.3.9"
   },
   "devDependencies": {
-    "assetgraph": "2.0.1",
+    "assetgraph": "2.5.1",
     "coveralls": "^2.11.6",
     "istanbul": "^0.4.2",
     "jshint": "^2.9.1",
