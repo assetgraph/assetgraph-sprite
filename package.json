@@ -26,7 +26,7 @@
     "seq": "0.3.5"
   },
   "optionalDependencies": {
-    "canvas": "1.3.15"
+    "canvas": "1.3.16"
   },
   "devDependencies": {
     "assetgraph": "2.10.1",
