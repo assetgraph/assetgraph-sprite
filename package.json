@@ -20,7 +20,7 @@
     "lib"
   ],
   "dependencies": {
-    "lodash.assign": "4.1.0",
+    "lodash.assign": "4.2.0",
     "lodash.values": "4.0.0",
     "passerror": "1.1.1",
     "seq": "0.3.5"
