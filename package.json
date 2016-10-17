@@ -35,7 +35,7 @@
     "jshint": "^2.9.1",
     "lodash.pluck": "3.1.2",
     "mocha": "^3.0.0",
-    "unexpected": "^10.13.3",
+    "unexpected": "^10.18.0",
     "urltools": "0.2.1"
   },
   "directories": {
