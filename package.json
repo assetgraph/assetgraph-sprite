@@ -31,8 +31,9 @@
   "devDependencies": {
     "assetgraph": "assetgraph/assetgraph#b57fb82dce11ca3b09079daee9515d486c8d945c",
     "coveralls": "^2.11.6",
+    "eslint": "4.16.0",
+    "eslint-config-onelint": "3.0.0",
     "istanbul": "^0.4.2",
-    "jshint": "^2.9.1",
     "lodash.pluck": "3.1.2",
     "mocha": "^3.0.0",
     "unexpected": "^10.26.0",
@@ -42,7 +43,7 @@
     "lib": "./lib"
   },
   "scripts": {
-    "lint": "jshint .",
+    "lint": "eslint .",
     "test": "npm run lint && mocha",
     "coverage": "istanbul cover _mocha",
     "travis": "npm run lint && npm run coverage"
