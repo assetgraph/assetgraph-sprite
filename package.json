@@ -23,7 +23,7 @@
     "canvas": "1.6.5"
   },
   "devDependencies": {
-    "assetgraph": "assetgraph/assetgraph#b57fb82dce11ca3b09079daee9515d486c8d945c",
+    "assetgraph": "4.0.0",
     "coveralls": "^2.11.6",
     "eslint": "4.16.0",
     "eslint-config-onelint": "3.0.0",
