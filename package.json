@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "assetgraph": "4.0.0",
-    "coveralls": "^2.11.6",
+    "coveralls": "^3.0.0",
     "eslint": "4.16.0",
     "eslint-config-onelint": "3.0.0",
     "istanbul": "^0.4.2",
