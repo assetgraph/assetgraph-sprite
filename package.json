@@ -29,7 +29,7 @@
     "eslint-config-onelint": "3.0.0",
     "istanbul": "^0.4.2",
     "lodash.pluck": "3.1.2",
-    "mocha": "^3.0.0",
+    "mocha": "^5.1.0",
     "unexpected": "^10.26.0",
     "urltools": "0.3.1"
   },
