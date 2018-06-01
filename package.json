@@ -13,9 +13,6 @@
       "email": "munter@fumle.dk"
     }
   ],
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org/"
-  },
   "files": [
     "lib"
   ],
