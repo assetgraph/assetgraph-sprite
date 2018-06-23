@@ -22,7 +22,7 @@
   "devDependencies": {
     "assetgraph": "4.10.1",
     "coveralls": "^3.0.0",
-    "eslint": "4.19.1",
+    "eslint": "5.0.0",
     "eslint-config-onelint": "3.0.0",
     "istanbul": "^0.4.2",
     "lodash.pluck": "3.1.2",
