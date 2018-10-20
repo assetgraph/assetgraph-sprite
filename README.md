@@ -160,19 +160,6 @@ Color Module</a>, as far as I can tell. Defaults to `transparent`.
 Installation
 ------------
 
-For creating the sprite images themselves AssetGraph-sprite uses <a
-href="http://github.com/LearnBoost/node-canvas">node-canvas</a>, which
-is not a pure-node module and requires the Cairo development sources
-(version 1.10 or later), `libjpeg` (version 8 or later) and
-`libgif`. On Ubuntu 10.10 and above you should be able to get them
-like this:
-
-```
-$ sudo apt-get install libcairo2-dev libgif-dev libjpeg8-dev
-```
-
-Now you can proceed to install AssetGraph-sprite:
-
 ```
 $ npm install assetgraph-sprite
 ```
