@@ -3,6 +3,7 @@ const pluck = require('lodash.pluck');
 const expect = require('./unexpected-with-plugins');
 const AssetGraph = require('assetgraph');
 const spriteBackgroundImages = require('../lib/spriteBackgroundImages');
+const pathModule = require('path');
 
 // Helper for extracting all nodes defining a specific property from a postcss rule
 function getProperties(container, propertyName) {
@@ -17,7 +18,13 @@ function unindent([str]) {
 describe('spriteBackgroundImages', () => {
   it('should sprite the background images in a simple test case', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/simple/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'simple'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -34,7 +41,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle the same simple test case again with -sprite-image-format set to jpg', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/simple/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'simple'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -58,7 +71,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should process a sprite with no group selector', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/noGroupSelector/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'noGroupSelector'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -87,7 +106,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle sprites with two images where one has spriteNoGroup in its query string', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/spriteNoGroup/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'spriteNoGroup'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -117,7 +142,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should process two sprites with -sprite-location properties in the group selector', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/spriteLocation/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'spriteLocation'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -139,9 +170,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle an existing background-image property in the group selector', async () => {
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'existingBackgroundImageInGroupSelector'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -160,9 +195,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle an existing background property in the group selector', async () => {
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/existingBackgroundInGroupSelector/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'existingBackgroundInGroupSelector'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -177,21 +216,25 @@ describe('spriteBackgroundImages', () => {
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to equal',
       unindent`
-            .icon {
-                background: red url(sprite-icons-1.png) !important;
-            }
-            
-            .icon-foo {background-position: 0 0;
-            }
-            `
+        .icon {
+            background: red url(sprite-icons-1.png) !important;
+        }
+
+        .icon-foo {background-position: 0 0;
+        }
+`
     );
   });
 
   it('should handle an existing background property in the sprite selector', async () => {
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/existingBackgroundInSpriteSelector/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'existingBackgroundInSpriteSelector'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -211,9 +254,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle existing background-position properties', async () => {
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/existingBackgroundPositions/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'existingBackgroundPositions'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -233,7 +280,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle a background-image and a background that are !important', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/important/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'important'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -253,7 +306,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle broken images', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/brokenImages/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'brokenImages'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -268,9 +327,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle images with wrong extensions', async () => {
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/imagesWithWrongExtensions/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'imagesWithWrongExtensions'
+      )
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -288,9 +351,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should handle duplicate identical sprite group names', async () => {
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'duplicateSpriteGroupName'
+      )
     });
     await assetGraph.loadAssets('identical*.css');
     await assetGraph.populate();
@@ -311,9 +378,13 @@ describe('spriteBackgroundImages', () => {
     const warnings = [];
 
     const assetGraph = new AssetGraph({
-      root:
-        __dirname +
-        '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'duplicateSpriteGroupName'
+      )
     });
     assetGraph.on('warn', warning => warnings.push(warning));
 
@@ -337,7 +408,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should get the background-position right when spriting a @2x image', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/retina/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'retina'
+      )
     });
     await assetGraph.loadAssets('index.html');
     await assetGraph.populate();
@@ -414,7 +491,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should sprite retina @2x inline styled backgrounds correctly', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/retina/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'retina'
+      )
     });
     await assetGraph.loadAssets('inline-style.html');
     await assetGraph.populate();
@@ -431,7 +514,13 @@ describe('spriteBackgroundImages', () => {
 
   it('should error out if an SVG image is added to a sprite', async () => {
     const assetGraph = new AssetGraph({
-      root: __dirname + '/../testdata/spriteBackgroundImages/svgInSprite/'
+      root: pathModule.resolve(
+        __dirname,
+        '..',
+        'testdata',
+        'spriteBackgroundImages',
+        'svgInSprite'
+      )
     });
     await assetGraph.loadAssets('index.html');
     await assetGraph.populate();
