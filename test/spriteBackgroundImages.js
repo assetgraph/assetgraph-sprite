@@ -345,6 +345,6 @@ describe('spriteBackgroundImages', function () {
 
         expect(assetGraph, 'to contain asset', 'Svg');
 
-        await expect(assetGraph.queue(spriteBackgroundImages()), 'to be rejected with', /error while reading from input stream/);
+        await expect(assetGraph.queue(spriteBackgroundImages()), 'to be rejected with', /Adding SVG images to a sprite is not possible/);
     });
 });

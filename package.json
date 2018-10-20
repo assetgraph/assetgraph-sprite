@@ -16,9 +16,6 @@
   "files": [
     "lib"
   ],
-  "optionalDependencies": {
-    "canvas": "1.6.5"
-  },
   "devDependencies": {
     "assetgraph": "5.4.0",
     "coveralls": "^3.0.0",
@@ -39,5 +36,8 @@
     "coverage": "istanbul cover _mocha",
     "travis": "npm run lint && npm run coverage"
   },
-  "main": "lib/spriteBackgroundImages.js"
+  "main": "lib/spriteBackgroundImages.js",
+  "dependencies": {
+    "canvas-prebuilt": "2.0.0-alpha.14"
+  }
 }
