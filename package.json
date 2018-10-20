@@ -20,10 +20,12 @@
     "assetgraph": "5.4.0",
     "coveralls": "^3.0.0",
     "eslint": "5.7.0",
-    "eslint-config-onelint": "4.0.0",
+    "eslint-config-pretty-standard": "2.0.0",
+    "eslint-plugin-prettier": "3.0.0",
     "istanbul": "^0.4.2",
     "lodash.pluck": "3.1.2",
     "mocha": "^5.1.0",
+    "prettier": "1.14.3",
     "unexpected": "^10.26.0",
     "urltools": "0.4.1"
   },
