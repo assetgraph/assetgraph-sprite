@@ -14,8 +14,8 @@ function unindent([str]) {
     return str.replace(new RegExp(`^${str.match(/^\s*/)[0]}`, 'mg'), '');
 }
 
-describe('spriteBackgroundImages', function () {
-    it('should sprite the background images in a simple test case', async function () {
+describe('spriteBackgroundImages', () => {
+    it('should sprite the background images in a simple test case', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/simple/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -30,7 +30,7 @@ describe('spriteBackgroundImages', function () {
         expect(assetGraph, 'to contain asset', 'Png');
     });
 
-    it('should handle the same simple test case again with -sprite-image-format set to jpg', async function () {
+    it('should handle the same simple test case again with -sprite-image-format set to jpg', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/simple/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -48,7 +48,7 @@ describe('spriteBackgroundImages', function () {
         expect(jpegAssets[0].rawSrc.slice(6, 10).toString('ascii'), 'to equal', 'JFIF');
     });
 
-    it('should process a sprite with no group selector', async function () {
+    it('should process a sprite with no group selector', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/noGroupSelector/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -75,7 +75,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should handle sprites with two images where one has spriteNoGroup in its query string', async function () {
+    it('should handle sprites with two images where one has spriteNoGroup in its query string', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/spriteNoGroup/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -103,7 +103,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should process two sprites with -sprite-location properties in the group selector', async function () {
+    it('should process two sprites with -sprite-location properties in the group selector', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/spriteLocation/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -120,7 +120,7 @@ describe('spriteBackgroundImages', function () {
         expect(cssImageHrefs[1], 'to match', /^sprite-.*?-\d+\.png\?pngquant=128$/);
     });
 
-    it('should handle an existing background-image property in the group selector', async function () {
+    it('should handle an existing background-image property in the group selector', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundImageInGroupSelector/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -137,7 +137,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should handle an existing background property in the group selector', async function () {
+    it('should handle an existing background property in the group selector', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundInGroupSelector/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -162,7 +162,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should handle an existing background property in the sprite selector', async function () {
+    it('should handle an existing background property in the sprite selector', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundInSpriteSelector/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -180,7 +180,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should handle existing background-position properties', async function () {
+    it('should handle existing background-position properties', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/existingBackgroundPositions/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -198,7 +198,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should handle a background-image and a background that are !important', async function () {
+    it('should handle a background-image and a background that are !important', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/important/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -216,7 +216,7 @@ describe('spriteBackgroundImages', function () {
         );
     });
 
-    it('should handle broken images', async function () {
+    it('should handle broken images', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/brokenImages/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -229,7 +229,7 @@ describe('spriteBackgroundImages', function () {
         expect(assetGraph, 'to contain relations', 'CssImage');
     });
 
-    it('should handle images with wrong extensions', async function () {
+    it('should handle images with wrong extensions', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/imagesWithWrongExtensions/'});
         await assetGraph.loadAssets('style.css');
         await assetGraph.populate();
@@ -245,7 +245,7 @@ describe('spriteBackgroundImages', function () {
         expect(assetGraph, 'to contain relations', 'CssImage', 2);
     });
 
-    it('should handle duplicate identical sprite group names', async function () {
+    it('should handle duplicate identical sprite group names', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'});
         await assetGraph.loadAssets('identical*.css');
         await assetGraph.populate();
@@ -262,7 +262,7 @@ describe('spriteBackgroundImages', function () {
         expect(cssAssets[0].text, 'to equal', cssAssets[1].text);
     });
 
-    it('should warn on identical sprite group names', async function () {
+    it('should warn on identical sprite group names', async () => {
         const warnings = [];
 
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/duplicateSpriteGroupName/'});
@@ -286,7 +286,7 @@ describe('spriteBackgroundImages', function () {
         expect(warnings, 'to have length', 1);
     });
 
-    it('should get the background-position right when spriting a @2x image', async function () {
+    it('should get the background-position right when spriting a @2x image', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/retina/'});
         await assetGraph.loadAssets('index.html');
         await assetGraph.populate();
@@ -323,7 +323,7 @@ describe('spriteBackgroundImages', function () {
         }
     });
 
-    it('should sprite retina @2x inline styled backgrounds correctly', async function () {
+    it('should sprite retina @2x inline styled backgrounds correctly', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/retina/'});
         await assetGraph.loadAssets('inline-style.html');
         await assetGraph.populate();
@@ -338,7 +338,7 @@ describe('spriteBackgroundImages', function () {
         expect(assetGraph, 'to contain relations', 'CssImage', 1);
     });
 
-    it('should error out if an SVG image is added to a sprite', async function () {
+    it('should error out if an SVG image is added to a sprite', async () => {
         const assetGraph = new AssetGraph({root: __dirname + '/../testdata/spriteBackgroundImages/svgInSprite/'});
         await assetGraph.loadAssets('index.html');
         await assetGraph.populate();
