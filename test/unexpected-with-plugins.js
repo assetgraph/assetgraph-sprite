@@ -1,3 +1,3 @@
 module.exports = require('unexpected')
-    .clone()
-    .installPlugin(require('assetgraph/test/unexpectedAssetGraph'));
+  .clone()
+  .installPlugin(require('assetgraph/test/unexpectedAssetGraph'));
