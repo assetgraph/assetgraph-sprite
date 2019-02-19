@@ -41,7 +41,7 @@
   },
   "main": "lib/spriteBackgroundImages.js",
   "dependencies": {
-    "canvas-prebuilt": "2.0.0-alpha.14"
+    "canvas": "^2.3.1"
   },
   "nyc": {
     "include": [
