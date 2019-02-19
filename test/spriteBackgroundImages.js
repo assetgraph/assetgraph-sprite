@@ -530,7 +530,7 @@ describe('spriteBackgroundImages', () => {
     await expect(
       assetGraph.queue(spriteBackgroundImages()),
       'to be rejected with',
-      /Adding SVG images to a sprite is not possible/
+      /are you trying to add an SVG to a sprite/
     );
   });
 });
