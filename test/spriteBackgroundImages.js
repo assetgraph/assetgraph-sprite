@@ -1,4 +1,3 @@
-/*global describe, it*/
 const pluck = require('lodash.pluck');
 const expect = require('./unexpected-with-plugins');
 const AssetGraph = require('assetgraph');
