@@ -21,9 +21,13 @@
     "assetgraph": "^5.4.0",
     "coveralls": "^3.0.0",
     "eslint": "^6.0.0",
-    "eslint-config-pretty-standard": "^2.0.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^6.0.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
     "lodash.pluck": "^3.1.2",
     "mocha": "^6.0.0",
     "nyc": "^14.0.0",
@@ -35,7 +39,7 @@
     "lib": "./lib"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && prettier --check '**/*.js'",
     "test": "mocha",
     "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm run test && echo google-chrome coverage/lcov-report/index.html",
     "travis": "npm run lint && npm run coverage"
