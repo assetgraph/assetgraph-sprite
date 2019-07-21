@@ -188,7 +188,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{\n    background-image: url\(sprite-.*?-\d+\.png\) !important;\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n$/
+      /^\.icon \{\n {4}background-image: url\(sprite-.*?-\d+\.png\) !important;\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n$/
     );
   });
 
@@ -247,7 +247,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n\n.icon-bar \{\n    background: -12px 4px;\n}\n\n.icon-quux \{\n    background: url\(\1\) -1610px -4px;\n}\n$/
+      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n\n.icon-bar \{\n {4}background: -12px 4px;\n}\n\n.icon-quux \{\n {4}background: url\(\1\) -1610px -4px;\n}\n$/
     );
   });
 
@@ -273,7 +273,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{\n    background-position: 0 0 !important;\n\}\n\n\.icon-bar \{\n    background-position: -112px -40px !important;\n\}\n\n\.icon-quux \{\n    background-image: url\(\1\);\n    background-position: -1610px 2px !important;\n\}\n$/
+      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{\n {4}background-position: 0 0 !important;\n\}\n\n\.icon-bar \{\n {4}background-position: -112px -40px !important;\n\}\n\n\.icon-quux \{\n {4}background-image: url\(\1\);\n {4}background-position: -1610px 2px !important;\n\}\n$/
     );
   });
 
@@ -299,7 +299,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image: (url\(sprite-.*?-\d+\.png\));\n}\n\n\.icon-foo \{\n    background-image: \1 !important;background-position: 0 0;\n\}\n\n\.icon-bar \{\n    background: red !important;background-position: -12px 0;\n\}\n$/
+      /^\.icon \{background-image: (url\(sprite-.*?-\d+\.png\));\n}\n\n\.icon-foo \{\n {4}background-image: \1 !important;background-position: 0 0;\n\}\n\n\.icon-bar \{\n {4}background: red !important;background-position: -12px 0;\n\}\n$/
     );
   });
 
