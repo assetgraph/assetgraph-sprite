@@ -42,7 +42,7 @@
     "lint": "eslint . && prettier --check '**/*.js'",
     "test": "mocha",
     "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm run test && echo google-chrome coverage/lcov-report/index.html",
-    "travis": "npm run lint && npm run coverage"
+    "ci": "npm run lint && npm run coverage"
   },
   "main": "lib/spriteBackgroundImages.js",
   "dependencies": {
