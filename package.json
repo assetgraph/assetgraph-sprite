@@ -18,7 +18,7 @@
     "lib"
   ],
   "devDependencies": {
-    "assetgraph": "^5.4.0",
+    "assetgraph": "^6.0.0",
     "coveralls": "^3.0.0",
     "eslint": "^6.0.0",
     "eslint-config-prettier": "^6.0.0",
