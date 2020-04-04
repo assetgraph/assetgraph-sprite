@@ -6,7 +6,7 @@ const pathModule = require('path');
 
 // Helper for extracting all nodes defining a specific property from a postcss rule
 function getProperties(container, propertyName) {
-  return container.nodes.filter(node => node.prop === propertyName);
+  return container.nodes.filter((node) => node.prop === propertyName);
 }
 
 function unindent([str]) {
@@ -23,7 +23,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'simple'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -46,7 +46,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'simple'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -76,7 +76,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'noGroupSelector'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -111,7 +111,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'spriteNoGroup'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -147,7 +147,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'spriteLocation'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -175,7 +175,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'existingBackgroundImageInGroupSelector'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -200,7 +200,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'existingBackgroundInGroupSelector'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -233,7 +233,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'existingBackgroundInSpriteSelector'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -259,7 +259,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'existingBackgroundPositions'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -285,7 +285,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'important'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -311,7 +311,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'brokenImages'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -332,7 +332,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'imagesWithWrongExtensions'
-      )
+      ),
     });
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
@@ -356,7 +356,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'duplicateSpriteGroupName'
-      )
+      ),
     });
     await assetGraph.loadAssets('identical*.css');
     await assetGraph.populate();
@@ -383,9 +383,9 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'duplicateSpriteGroupName'
-      )
+      ),
     });
-    assetGraph.on('warn', warning => warnings.push(warning));
+    assetGraph.on('warn', (warning) => warnings.push(warning));
 
     await assetGraph.loadAssets('identical1.css', 'different.css');
     await assetGraph.populate();
@@ -413,7 +413,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'retina'
-      )
+      ),
     });
     await assetGraph.loadAssets('index.html');
     await assetGraph.populate();
@@ -422,16 +422,16 @@ describe('spriteBackgroundImages', () => {
     expect(assetGraph, 'to contain assets', 'Png', 2);
     expect(assetGraph, 'to contain asset', {
       type: 'Png',
-      devicePixelRatio: 1
+      devicePixelRatio: 1,
     });
     expect(assetGraph, 'to contain asset', {
       type: 'Png',
-      devicePixelRatio: 2
+      devicePixelRatio: 2,
     });
 
     for (const relation of assetGraph.findRelations({
       type: 'CssImage',
-      node: { selector: '.regular' }
+      node: { selector: '.regular' },
     })) {
       expect(relation.to.devicePixelRatio, 'to be', 1);
       expect(getProperties(relation.node, 'background-size'), 'to be empty');
@@ -439,7 +439,7 @@ describe('spriteBackgroundImages', () => {
 
     for (const relation of assetGraph.findRelations({
       type: 'CssImage',
-      node: { selector: '.retina' }
+      node: { selector: '.retina' },
     })) {
       expect(relation.to.devicePixelRatio, 'to be', 2);
       expect(
@@ -468,17 +468,17 @@ describe('spriteBackgroundImages', () => {
 
     for (const relation of assetGraph.findRelations({
       type: 'CssImage',
-      node: { selector: '.regular' }
+      node: { selector: '.regular' },
     })) {
       expect(getProperties(relation.node), 'to be empty');
     }
 
     for (const relation of assetGraph.findRelations({
       type: 'CssImage',
-      node: { selector: '.retina' }
+      node: { selector: '.retina' },
     })) {
       expect(getProperties(relation.node, 'background-size'), 'to satisfy', [
-        { value: '89px 59px' }
+        { value: '89px 59px' },
       ]);
       expect(
         getProperties(relation.node, 'background-position'),
@@ -496,7 +496,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'retina'
-      )
+      ),
     });
     await assetGraph.loadAssets('inline-style.html');
     await assetGraph.populate();
@@ -519,7 +519,7 @@ describe('spriteBackgroundImages', () => {
         'testdata',
         'spriteBackgroundImages',
         'svgInSprite'
-      )
+      ),
     });
     await assetGraph.loadAssets('index.html');
     await assetGraph.populate();
