@@ -139,32 +139,56 @@ describe('spriteBackgroundImages', () => {
     );
   });
 
-  it('should process two sprites with -sprite-location properties in the group selector', async () => {
-    const assetGraph = new AssetGraph({
-      root: pathModule.resolve(
-        __dirname,
-        '..',
-        'testdata',
-        'spriteBackgroundImages',
-        'spriteLocation'
-      ),
+  describe('with -sprite-location', function () {
+    it('should process two sprites with -sprite-location properties in the group selector', async () => {
+      const assetGraph = new AssetGraph({
+        root: pathModule.resolve(
+          __dirname,
+          '..',
+          'testdata',
+          'spriteBackgroundImages',
+          'spriteLocation'
+        ),
+      });
+      await assetGraph.loadAssets('style.css');
+      await assetGraph.populate();
+
+      expect(assetGraph, 'to contain assets', 'Png', 4);
+
+      await assetGraph.queue(spriteBackgroundImages());
+
+      expect(assetGraph, 'to contain assets', 'Png', 2);
+      expect(assetGraph, 'to contain relations', 'CssImage', 2);
+
+      const cssImageHrefs = pluck(
+        assetGraph.findRelations({ type: 'CssImage' }),
+        'href'
+      ).sort();
+      expect(cssImageHrefs[0], 'to equal', 'myImage.png?pngquant=128');
+      expect(
+        cssImageHrefs[1],
+        'to match',
+        /^sprite-.*?-\d+\.png\?pngquant=128$/
+      );
     });
-    await assetGraph.loadAssets('style.css');
-    await assetGraph.populate();
 
-    expect(assetGraph, 'to contain assets', 'Png', 4);
+    it('should remove the -sprite-location properties', async () => {
+      const assetGraph = new AssetGraph({
+        root: pathModule.resolve(
+          __dirname,
+          '..',
+          'testdata',
+          'spriteBackgroundImages',
+          'spriteLocation'
+        ),
+      });
+      const [cssAsset] = await assetGraph.loadAssets('style.css');
+      await assetGraph.populate();
 
-    await assetGraph.queue(spriteBackgroundImages());
+      await assetGraph.queue(spriteBackgroundImages());
 
-    expect(assetGraph, 'to contain assets', 'Png', 2);
-    expect(assetGraph, 'to contain relations', 'CssImage', 2);
-
-    const cssImageHrefs = pluck(
-      assetGraph.findRelations({ type: 'CssImage' }),
-      'href'
-    ).sort();
-    expect(cssImageHrefs[0], 'to equal', 'myImage.png?pngquant=128');
-    expect(cssImageHrefs[1], 'to match', /^sprite-.*?-\d+\.png\?pngquant=128$/);
+      expect(cssAsset.text, 'not to contain', '-sprite-location');
+    });
   });
 
   it('should handle an existing background-image property in the group selector', async () => {
