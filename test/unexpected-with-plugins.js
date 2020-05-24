@@ -1,3 +1,4 @@
 module.exports = require('unexpected')
   .clone()
-  .installPlugin(require('assetgraph/test/unexpectedAssetGraph'));
+  .use(require('assetgraph/test/unexpectedAssetGraph'))
+  .use(require('unexpected-image'));
