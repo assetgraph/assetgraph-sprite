@@ -556,4 +556,51 @@ describe('spriteBackgroundImages', () => {
       /are you trying to add an SVG to a sprite/
     );
   });
+
+  describe('with padding', function () {
+    describe('defined in the group selector', function () {
+      it('should apply the padding', async () => {
+        const assetGraph = new AssetGraph({
+          root: pathModule.resolve(
+            __dirname,
+            '..',
+            'testdata',
+            'spriteBackgroundImages',
+            'padding',
+            'inGroupSelector'
+          ),
+        });
+        await assetGraph.loadAssets('style.css');
+        await assetGraph.populate();
+
+        await assetGraph.queue(spriteBackgroundImages());
+        const [spriteAsset] = assetGraph.findAssets({ fileName: 'sprite.png' });
+        await expect(spriteAsset.rawSrc, 'to have metadata satisfying', {
+          size: {
+            width: 12,
+            height: 90,
+          },
+        });
+      });
+
+      it('should remove the -sprite-padding property', async () => {
+        const assetGraph = new AssetGraph({
+          root: pathModule.resolve(
+            __dirname,
+            '..',
+            'testdata',
+            'spriteBackgroundImages',
+            'padding',
+            'inGroupSelector'
+          ),
+        });
+        const [cssAsset] = await assetGraph.loadAssets('style.css');
+        await assetGraph.populate();
+
+        await assetGraph.queue(spriteBackgroundImages());
+
+        expect(cssAsset.text, 'not to contain', '-sprite-padding');
+      });
+    });
+  });
 });
