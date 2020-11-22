@@ -40,7 +40,7 @@
     "lib": "./lib"
   },
   "scripts": {
-    "lint": "eslint . && prettier --check '**/*.{js,md}'",
+    "lint": "eslint . && prettier --check '**/*.{js,json,md}'",
     "test": "mocha",
     "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm run test && echo google-chrome coverage/lcov-report/index.html",
     "test:ci": "npm run coverage"
