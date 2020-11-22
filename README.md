@@ -229,6 +229,10 @@ new AssetGraph({ root: 'path/to/css/files' })
 For a more elaborate example of how AssetGraph-sprite can fit in a
 workflow, see the <a href="https://github.com/One-com/assetgraph-builder/blob/master/bin/buildProduction">buildProduction script in AssetGraph-builder</a>
 
+## Releases
+
+[Changelog](https://github.com/assetgraph/assetgraph-sprite/blob/master/CHANGELOG.md)
+
 ## License
 
 AssetGraph-sprite is licensed under a standard 3-clause BSD license --

@@ -31,6 +31,7 @@
     "lodash.pluck": "^3.1.2",
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
+    "offline-github-changelog": "^2.0.0",
     "prettier": "~2.2.0",
     "unexpected": "^12.0.0",
     "unexpected-image": "^4.0.0",
@@ -43,7 +44,8 @@
     "lint": "eslint . && prettier --check '**/*.{js,json,md}'",
     "test": "mocha",
     "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm run test && echo google-chrome coverage/lcov-report/index.html",
-    "test:ci": "npm run coverage"
+    "test:ci": "npm run coverage",
+    "preversion": "offline-github-changelog --next=${npm_package_version} > CHANGELOG.md && git add CHANGELOG.md"
   },
   "main": "lib/spriteBackgroundImages.js",
   "dependencies": {
