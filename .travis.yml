@@ -12,7 +12,7 @@ cache:
 matrix:
   include:
     - name: Lint
-      node_js: 12
+      node_js: 14
       script: npm run lint
 
 script: npm run test:ci
