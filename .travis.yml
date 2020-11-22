@@ -3,7 +3,7 @@ node_js:
   - 8
   - 10
   - 12
-  - node
+  - 14
 
 before_install: 'sudo apt-get update && sudo apt-get install -y graphicsmagick'
 cache:
