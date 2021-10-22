@@ -3,6 +3,7 @@ const expect = require('./unexpected-with-plugins');
 const AssetGraph = require('assetgraph');
 const spriteBackgroundImages = require('../lib/spriteBackgroundImages');
 const pathModule = require('path');
+const sinon = require('sinon');
 
 // Helper for extracting all nodes defining a specific property from a postcss rule
 function getProperties(container, propertyName) {
@@ -275,7 +276,7 @@ describe('spriteBackgroundImages', () => {
     );
   });
 
-  it('should handle existing background-position properties', async () => {
+  it.only('should handle existing background-position properties', async () => {
     const assetGraph = new AssetGraph({
       root: pathModule.resolve(
         __dirname,
@@ -288,6 +289,9 @@ describe('spriteBackgroundImages', () => {
     await assetGraph.loadAssets('style.css');
     await assetGraph.populate();
 
+    const warnSpy = sinon.spy().named('warn');
+    assetGraph.on('warn', warnSpy);
+
     expect(assetGraph, 'to contain assets', 'Png', 3);
 
     await assetGraph.queue(spriteBackgroundImages());
@@ -297,8 +301,14 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{\n {4}background-position: 0 0 !important;\n\}\n\n\.icon-bar \{\n {4}background-position: -112px -40px !important;\n\}\n\n\.icon-quux \{\n {4}background-image: url\(\1\);\n {4}background-position: -1610px 2px !important;\n\}\n$/
+      /^\.icon \{background-image:\s*url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{\n {4}background-position:\s*0 0\s*!important;\n\}\n\n\.icon-bar \{\n {4}background-position: -112px -40px !important;\n\}\n\n\.icon-quux \{\n {4}background-image: url\(\1\);\n {4}background-position: -1610px 2px !important;\n\}\n$/
     );
+
+    expect(warnSpy, 'to have calls satisfying', () => {
+      warnSpy(
+        /WARNING: trying to sprite file:.*\/foo.png\?sprite=icons with background-position: {2}$/
+      );
+    });
   });
 
   it('should handle a background-image and a background that are !important', async () => {
