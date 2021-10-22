@@ -276,7 +276,7 @@ describe('spriteBackgroundImages', () => {
     );
   });
 
-  it.only('should handle existing background-position properties', async () => {
+  it('should handle existing background-position properties', async () => {
     const assetGraph = new AssetGraph({
       root: pathModule.resolve(
         __dirname,
