@@ -212,7 +212,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{\n {4}background-image: url\(sprite-.*?-\d+\.png\) !important;\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n$/
+      /^\.icon \{\n {4}background-image:\s*url\(sprite-.*?-\d+\.png\)\s*!important;\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n$/
     );
   });
 
