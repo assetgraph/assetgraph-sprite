@@ -50,7 +50,7 @@
   },
   "main": "lib/spriteBackgroundImages.js",
   "dependencies": {
-    "canvas": "^2.3.1"
+    "canvas": "2.9.0"
   },
   "nyc": {
     "include": [
