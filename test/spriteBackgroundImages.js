@@ -306,7 +306,7 @@ describe('spriteBackgroundImages', () => {
 
     expect(warnSpy, 'to have calls satisfying', () => {
       warnSpy(
-        /WARNING: trying to sprite file:.*\/foo.png\?sprite=icons with background-position: {2}$/
+        /WARNING: trying to sprite file:.*\/foo.png\?sprite=icons with background-position: !important$/
       );
     });
   });
