@@ -32,7 +32,7 @@
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
     "offline-github-changelog": "^3.0.0",
-    "prettier": "~2.7.0",
+    "prettier": "~2.8.0",
     "sinon": "^14.0.0",
     "unexpected": "^13.0.0",
     "unexpected-image": "^4.0.0",
