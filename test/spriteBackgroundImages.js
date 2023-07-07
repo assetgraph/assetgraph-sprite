@@ -23,7 +23,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'simple'
+        'simple',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -46,7 +46,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'simple'
+        'simple',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -65,7 +65,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       jpegAssets[0].rawSrc.slice(6, 10).toString('ascii'),
       'to equal',
-      'JFIF'
+      'JFIF',
     );
   });
 
@@ -76,7 +76,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'noGroupSelector'
+        'noGroupSelector',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -100,7 +100,7 @@ describe('spriteBackgroundImages', () => {
             .icon-bar {
                 background-image: url(sprite-icons-2.png);background-position: -12px 0;
             }
-            `
+            `,
     );
   });
 
@@ -111,7 +111,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'spriteNoGroup'
+        'spriteNoGroup',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -136,7 +136,7 @@ describe('spriteBackgroundImages', () => {
 
             .foo-bar {background-position: -12px 0
             }
-            `
+            `,
     );
   });
 
@@ -148,7 +148,7 @@ describe('spriteBackgroundImages', () => {
           '..',
           'testdata',
           'spriteBackgroundImages',
-          'spriteLocation'
+          'spriteLocation',
         ),
       });
       await assetGraph.loadAssets('style.css');
@@ -163,13 +163,13 @@ describe('spriteBackgroundImages', () => {
 
       const cssImageHrefs = pluck(
         assetGraph.findRelations({ type: 'CssImage' }),
-        'href'
+        'href',
       ).sort();
       expect(cssImageHrefs[0], 'to equal', 'myImage.png?pngquant=128');
       expect(
         cssImageHrefs[1],
         'to match',
-        /^sprite-.*?-\d+\.png\?pngquant=128$/
+        /^sprite-.*?-\d+\.png\?pngquant=128$/,
       );
     });
 
@@ -180,7 +180,7 @@ describe('spriteBackgroundImages', () => {
           '..',
           'testdata',
           'spriteBackgroundImages',
-          'spriteLocation'
+          'spriteLocation',
         ),
       });
       const [cssAsset] = await assetGraph.loadAssets('style.css');
@@ -199,7 +199,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'existingBackgroundImageInGroupSelector'
+        'existingBackgroundImageInGroupSelector',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -213,7 +213,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{\n {4}background-image:\s*url\(sprite-.*?-\d+\.png\)\s*!important;\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n$/
+      /^\.icon \{\n {4}background-image:\s*url\(sprite-.*?-\d+\.png\)\s*!important;\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n$/,
     );
   });
 
@@ -224,7 +224,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'existingBackgroundInGroupSelector'
+        'existingBackgroundInGroupSelector',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -246,7 +246,7 @@ describe('spriteBackgroundImages', () => {
 
         .icon-foo {background-position: 0 0;
         }
-`
+`,
     );
   });
 
@@ -257,7 +257,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'existingBackgroundInSpriteSelector'
+        'existingBackgroundInSpriteSelector',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -272,7 +272,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n\n.icon-bar \{\n {4}background: -12px 4px;\n}\n\n.icon-quux \{\n {4}background: url\(\1\) -1610px -4px;\n}\n$/
+      /^\.icon \{background-image: url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{background-position: 0 0;\n\}\n\n.icon-bar \{\n {4}background: -12px 4px;\n}\n\n.icon-quux \{\n {4}background: url\(\1\) -1610px -4px;\n}\n$/,
     );
   });
 
@@ -283,7 +283,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'existingBackgroundPositions'
+        'existingBackgroundPositions',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -301,12 +301,12 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image:\s*url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{\n {4}background-position:\s*0 0\s*!important;\n\}\n\n\.icon-bar \{\n {4}background-position: -112px -40px !important;\n\}\n\n\.icon-quux \{\n {4}background-image: url\(\1\);\n {4}background-position: -1610px 2px !important;\n\}\n$/
+      /^\.icon \{background-image:\s*url\((sprite-.*?-\d+\.png)\);\n}\n\n\.icon-foo \{\n {4}background-position:\s*0 0\s*!important;\n\}\n\n\.icon-bar \{\n {4}background-position: -112px -40px !important;\n\}\n\n\.icon-quux \{\n {4}background-image: url\(\1\);\n {4}background-position: -1610px 2px !important;\n\}\n$/,
     );
 
     expect(warnSpy, 'to have calls satisfying', () => {
       warnSpy(
-        /WARNING: trying to sprite file:.*\/foo.png\?sprite=icons with background-position: !important$/
+        /WARNING: trying to sprite file:.*\/foo.png\?sprite=icons with background-position: !important$/,
       );
     });
   });
@@ -318,7 +318,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'important'
+        'important',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -333,7 +333,7 @@ describe('spriteBackgroundImages', () => {
     expect(
       assetGraph.findAssets({ type: 'Css' })[0].text,
       'to match',
-      /^\.icon \{background-image: (url\(sprite-.*?-\d+\.png\));\n}\n\n\.icon-foo \{\n {4}background-image: \1 !important;background-position: 0 0;\n\}\n\n\.icon-bar \{\n {4}background: red !important;background-position: -12px 0;\n\}\n$/
+      /^\.icon \{background-image: (url\(sprite-.*?-\d+\.png\));\n}\n\n\.icon-foo \{\n {4}background-image: \1 !important;background-position: 0 0;\n\}\n\n\.icon-bar \{\n {4}background: red !important;background-position: -12px 0;\n\}\n$/,
     );
   });
 
@@ -344,7 +344,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'brokenImages'
+        'brokenImages',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -365,7 +365,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'imagesWithWrongExtensions'
+        'imagesWithWrongExtensions',
       ),
     });
     await assetGraph.loadAssets('style.css');
@@ -389,7 +389,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'duplicateSpriteGroupName'
+        'duplicateSpriteGroupName',
       ),
     });
     await assetGraph.loadAssets('identical*.css');
@@ -416,7 +416,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'duplicateSpriteGroupName'
+        'duplicateSpriteGroupName',
       ),
     });
     assetGraph.on('warn', (warning) => warnings.push(warning));
@@ -446,7 +446,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'retina'
+        'retina',
       ),
     });
     await assetGraph.loadAssets('index.html');
@@ -479,7 +479,7 @@ describe('spriteBackgroundImages', () => {
       expect(
         getProperties(relation.node, 'background-size'),
         'to have length',
-        1
+        1,
       );
     }
 
@@ -491,13 +491,13 @@ describe('spriteBackgroundImages', () => {
       assetGraph,
       'to contain relations',
       { type: 'CssImage', node: { selector: '.regular' } },
-      1
+      1,
     );
     expect(
       assetGraph,
       'to contain relations',
       { type: 'CssImage', node: { selector: '.retina' } },
-      1
+      1,
     );
 
     for (const relation of assetGraph.findRelations({
@@ -517,7 +517,7 @@ describe('spriteBackgroundImages', () => {
       expect(
         getProperties(relation.node, 'background-position'),
         'to satisfy',
-        [{ value: '-30px 0' }]
+        [{ value: '-30px 0' }],
       );
     }
   });
@@ -529,7 +529,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'retina'
+        'retina',
       ),
     });
     await assetGraph.loadAssets('inline-style.html');
@@ -552,7 +552,7 @@ describe('spriteBackgroundImages', () => {
         '..',
         'testdata',
         'spriteBackgroundImages',
-        'svgInSprite'
+        'svgInSprite',
       ),
     });
     await assetGraph.loadAssets('index.html');
@@ -563,7 +563,7 @@ describe('spriteBackgroundImages', () => {
     await expect(
       assetGraph.queue(spriteBackgroundImages()),
       'to be rejected with',
-      /are you trying to add an SVG to a sprite/
+      /are you trying to add an SVG to a sprite/,
     );
   });
 
@@ -577,7 +577,7 @@ describe('spriteBackgroundImages', () => {
             'testdata',
             'spriteBackgroundImages',
             'padding',
-            'inGroupSelector'
+            'inGroupSelector',
           ),
         });
         await assetGraph.loadAssets('style.css');
@@ -601,7 +601,7 @@ describe('spriteBackgroundImages', () => {
             'testdata',
             'spriteBackgroundImages',
             'padding',
-            'inGroupSelector'
+            'inGroupSelector',
           ),
         });
         const [cssAsset] = await assetGraph.loadAssets('style.css');
