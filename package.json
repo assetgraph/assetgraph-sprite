@@ -30,7 +30,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "lodash.pluck": "^3.1.2",
     "mocha": "^7.0.0",
-    "nyc": "^15.0.0",
+    "nyc": "^17.0.0",
     "offline-github-changelog": "^3.0.0",
     "prettier": "~3.0.0",
     "sinon": "^15.0.0",
